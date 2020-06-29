@@ -1,3 +1,29 @@
-*{
+* {
 	box-sizing: border-box;
+}
+
+html,
+body,
+.container-fluid,
+.row {
+	height: 100%;
+	margin: 0px;
+	/*	background-color: #dde66e;*/
+}
+
+#grid-area {
+	/*	background-color: #69a9ea;*/
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+}
+
+#grid {
+	height: 100%;
+
+}
+
+
+#options {
+	background-color: #80c140;
 }
