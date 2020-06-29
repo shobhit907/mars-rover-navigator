@@ -1,4 +1,4 @@
-var sz = 8;
+var sz=8;
 
 jQuery(document).ready(function () {
 	grid = document.getElementById("grid");
@@ -33,50 +33,51 @@ jQuery(document).ready(function () {
 });
 
 function markStartEnd(event) {
-	//	console.log(event);
+//	console.log(event);
 	var checked = document.querySelector('input[name="blocktype"]:checked').value;
-	if (!(checked == "start" || checked == "end")) {
+	if(!(checked=="start" || checked=="end")){
 		return;
 	}
-	var x = event.clientX,
-		y = event.clientY;
-	x -= 30;
-	x /= 40;
-	y /= 40;
-	x = ~~x;
-	y = ~~y;
-	//	console.log(x,y);
+	var x=event.clientX,y=event.clientY;
+	x-=30;
+	x/=40;
+	y/=40;
+	x=~~x;
+	y=~~y;
+//	console.log(x,y);
 	grid = document.getElementById("grid");
 	ctx = grid.getContext("2d");
 	if (checked == "start") {
 		ctx.fillStyle = "green";
-		ctx.fillRect(x * sz, y * sz, sz, sz);
+		ctx.fillRect(x*sz,y*sz,sz,sz);
 	} else if (checked === "end") {
 		ctx.fillStyle = "red";
-		ctx.fillRect(x * sz, y * sz, sz, sz);
+		ctx.fillRect(x*sz,y*sz,sz,sz);
 	}
 }
 
-function markWall(event) {
+function markWall(event){
 	var checked = document.querySelector('input[name="blocktype"]:checked').value;
-	if (!(checked == "wall1" || checked == "wall2")) {
+	if(!(checked=="wall1" || checked=="wall2")){
 		return;
 	}
-	var x = event.clientX,
-		y = event.clientY;
-	x -= 30;
-	x /= 40;
-	y /= 40;
-	x = ~~x;
-	y = ~~y;
+	var x=event.clientX,y=event.clientY;
+	x-=30;
+	x/=40;
+	y/=40;
+	x=~~x;
+	y=~~y;
+	if(x===0 && y===0){
+		return;
+	}
 	grid = document.getElementById("grid");
 	ctx = grid.getContext("2d");
-	if (checked == "wall1") {
+	if(checked=="wall1"){
 		ctx.fillStyle = "black";
-		ctx.fillRect(x * sz, y * sz, sz, sz);
-	} else if (checked == "wall2") {
+		ctx.fillRect(x*sz,y*sz,sz,sz);
+	}else if(checked=="wall2"){
 		ctx.fillStyle = "gray";
-		ctx.fillRect(x * sz, y * sz, sz, sz);
+		ctx.fillRect(x*sz,y*sz,sz,sz);
 	}
 }
 
