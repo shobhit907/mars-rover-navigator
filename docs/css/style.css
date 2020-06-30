@@ -25,7 +25,7 @@ body,
 
 
 #options {
-	background-color: #80c140;
+	background-color: var(--dark-blue);
 }
 
 
