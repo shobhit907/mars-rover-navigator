@@ -27,20 +27,42 @@
 				</canvas>
 			</div>
 			<div class="col-sm" id="options">
-				<form>
-					<div class="form-group">
-						<input type="radio" id="start" name="blocktype" value="start" checked="checked">
-						<label for="start">Mark Start</label><br>
-					</div>
-					<div class="form-group"><input type="radio" id="end" name="blocktype" value="end">
-						<label for="end">Mark End</label><br>
-					</div>
-					<div class="form-group"><input type="radio" id="wall1" name="blocktype" value="wall1">
-						<label for="wall1">Mark Wall1</label><br>
-					</div>
-					<div class="form-group"><input type="radio" id="wall2" name="blocktype" value="wall2">
-						<label for="wall2">Mark Wall2</label><br></div>
-				</form>
+				<br>
+				<div class="design-tools">
+					<div class='Heading'><h2 id="tools-head">DESIGN TOOLS</h2></div>
+					<input class="checkbox-tools" type="radio" id="start" name="blocktype" value="start" checked="checked">
+					<label for="start">Mark Starting</label>
+					<input class="checkbox-tools" type="radio" id="end" name="blocktype" value="end">
+					<label for="end">Mark Terminus</label>
+					<input class="checkbox-tools" type="radio" id="wall1" name="blocktype" value="wall1">
+					<label for="wall1">Impassable Walls</label>
+					<br>
+					<input class="checkbox-tools" type="radio" id="wall2" name="blocktype" value="wall2">
+					<label for="wall2">Passable Walls</label>
+					<button class='btn'>START SEARCH</button>
+					<button class='btn'>RESET ARENA</button>
+				</div>
+				<br>
+				<div class="algorithms">
+					<div class='Heading'><h2 id="tools-head">ALGORITHMS</h2></div>
+					<input class="checkbox-tools-algo" type="radio" id="A-star" name="algo" value="A-star" checked="checked">
+					<label for="A-star">A*</label>
+					<input class="checkbox-tools-algo" type="radio" id="IDA" name="algo" value="IDA">
+					<label for="IDA">IDA*</label>
+					<input class="checkbox-tools-algo" type="radio" id="BreadthFS" name="algo" value="BreadthFS">
+					<label for="BreadthFS">Breadth-FS</label>
+					<br>
+					<input class="checkbox-tools-algo" type="radio" id="BestFS" name="algo" value="BestFS">
+					<label for="BestFS">Best-FS</label>
+					<input class="checkbox-tools-algo" type="radio" id="Dijkstra" name="algo" value="Dijkstra">
+					<label for="Dijkstra">Dijkstra</label>
+					<input class="checkbox-tools-algo" type="radio" id="JumpPoint" name="algo" value="JumpPoint">
+					<label for="JumpPoint">Jump Point</label>
+					<br>
+					<input class="checkbox-tools-algo" type="radio" id="Ortho" name="algo" value="Ortho">
+					<label for="Ortho">Orthogonal</label>
+					<input class="checkbox-tools-algo" type="radio" id="trace" name="algo" value="trace">
+					<label for="trace">Trace</label>
 			</div>
 		</div>
 	</div>
