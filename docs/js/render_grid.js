@@ -1,23 +1,26 @@
-var sz=8;
+var sz=5;
+
 
 jQuery(document).ready(function () {
 	grid = document.getElementById("grid");
 	ctx = grid.getContext("2d");
 	ctx.lineWidth = 1;
 	ctx.translate(0.5, 0.5);
-	for (x = 0; x < 30; x++) {
+	ctx.strokeStyle = "#669999";
+	for (x = 0; x < 1000; x++) {
 		ctx.beginPath();
 		ctx.moveTo(0, x * sz);
 		ctx.lineTo(grid.width, x * sz);
 		ctx.stroke();
 	}
-	for (x = 0; x < 30; x++) {
+	for (x = 0; x < 1000; x++) {
 		ctx.beginPath();
 		ctx.moveTo(x * sz, 0);
 		ctx.lineTo(x * sz, grid.height);
 		ctx.stroke();
 	}
-
+	
+//	ctx.stroke();
 	img = new Image();
 	img.onload = function () {
 		grid.addEventListener("dragstart", function (e) {
@@ -33,18 +36,35 @@ jQuery(document).ready(function () {
 });
 
 function markStartEnd(event) {
-//	console.log(event);
+	console.log(event);
 	var checked = document.querySelector('input[name="blocktype"]:checked').value;
 	if(!(checked=="start" || checked=="end")){
 		return;
 	}
+	var rat = window.devicePixelRatio;
+
+	var w = 1366/screen.width;
+	var h = 768/screen.height;
+	 xr=w*rat;
+	 yr=h*rat;
+
 	var x=event.clientX,y=event.clientY;
-	x-=30;
-	x/=40;
-	y/=40;
-	x=~~x;
-	y=~~y;
-//	console.log(x,y);
+	//console.log(x, y, w, h, xr, yr);
+	
+	console.log(rat);
+	   x-=32;
+	
+	  x=x*xr;
+	  y=y*yr;
+	
+	  x/=21;
+	 
+	 y/=21;
+	
+	 x=~~x;
+	 y=~~y;
+
+	 //console.log(x, y);
 	grid = document.getElementById("grid");
 	ctx = grid.getContext("2d");
 	if (checked == "start") {
