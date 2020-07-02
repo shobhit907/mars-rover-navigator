@@ -43,15 +43,15 @@ function markStartEnd(event) {
 	}
 	var rat = window.devicePixelRatio;
 
-	var w = 1366/screen.width;
-	var h = 768/screen.height;
+	var w = screen.width/1366;
+	var h = screen.height/768;
 	 xr=w*rat;
 	 yr=h*rat;
 
 	var x=event.clientX,y=event.clientY;
 	//console.log(x, y, w, h, xr, yr);
 	
-	console.log(rat);
+	//console.log(rat);
 	   x-=32;
 	
 	  x=x*xr;
@@ -81,12 +81,25 @@ function markWall(event){
 	if(!(checked=="wall1" || checked=="wall2")){
 		return;
 	}
+	var rat = window.devicePixelRatio;
+
+	var w = 1366 / screen.width;
+	var h = 768 / screen.height;
+	xr = w * rat;
+	yr = h * rat;
 	var x=event.clientX,y=event.clientY;
-	x-=30;
-	x/=40;
-	y/=40;
-	x=~~x;
-	y=~~y;
+	x -= 32;
+
+	x = x * xr;
+	y = y * yr;
+
+	x /= 21;
+
+	y /= 21;
+
+	x = ~~x;
+	y = ~~y;
+
 	if(x===0 && y===0){
 		return;
 	}
