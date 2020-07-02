@@ -81,6 +81,24 @@ function markWall(event){
 	}
 }
 
+function resetGrid(event){
+	grid = document.getElementById("grid");
+	ctx = grid.getContext("2d");
+	ctx.clearRect(0,0,grid.width,grid.height);
+	for (x = 0; x < 30; x++) {
+		ctx.beginPath();
+		ctx.moveTo(0, x * sz);
+		ctx.lineTo(grid.width, x * sz);
+		ctx.stroke();
+	}
+	for (x = 0; x < 30; x++) {
+		ctx.beginPath();
+		ctx.moveTo(x * sz, 0);
+		ctx.lineTo(x * sz, grid.height);
+		ctx.stroke();
+	}
+}
+
 function fun1() {
 	var var2 = document.querySelector('input[name="blocktype"]:checked').value;
 	//	console.log(var2);
