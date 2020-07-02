@@ -5,13 +5,13 @@ jQuery(document).ready(function () {
 	ctx = grid.getContext("2d");
 	ctx.lineWidth = 1;
 	ctx.translate(0.5, 0.5);
-	for (x = 0; x < 30; x++) {
+	for (x = 0; x < 40; x++) {
 		ctx.beginPath();
 		ctx.moveTo(0, x * sz);
 		ctx.lineTo(grid.width, x * sz);
 		ctx.stroke();
 	}
-	for (x = 0; x < 30; x++) {
+	for (x = 0; x < 40; x++) {
 		ctx.beginPath();
 		ctx.moveTo(x * sz, 0);
 		ctx.lineTo(x * sz, grid.height);
@@ -39,7 +39,6 @@ function markStartEnd(event) {
 		return;
 	}
 	var x=event.clientX,y=event.clientY;
-	x-=30;
 	x/=40;
 	y/=40;
 	x=~~x;
@@ -62,7 +61,6 @@ function markWall(event){
 		return;
 	}
 	var x=event.clientX,y=event.clientY;
-	x-=30;
 	x/=40;
 	y/=40;
 	x=~~x;
@@ -85,13 +83,13 @@ function resetGrid(event){
 	grid = document.getElementById("grid");
 	ctx = grid.getContext("2d");
 	ctx.clearRect(0,0,grid.width,grid.height);
-	for (x = 0; x < 30; x++) {
+	for (x = 0; x < 40; x++) {
 		ctx.beginPath();
 		ctx.moveTo(0, x * sz);
 		ctx.lineTo(grid.width, x * sz);
 		ctx.stroke();
 	}
-	for (x = 0; x < 30; x++) {
+	for (x = 0; x < 40; x++) {
 		ctx.beginPath();
 		ctx.moveTo(x * sz, 0);
 		ctx.lineTo(x * sz, grid.height);

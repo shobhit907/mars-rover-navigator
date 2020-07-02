@@ -8,6 +8,7 @@ body,
 .row {
 	height: 100%;
 	margin: 0px;
+	padding: 0px;
 	/*	background-color: #dde66e;*/
 }
 
@@ -15,12 +16,13 @@ body,
 	/*	background-color: #69a9ea;*/
 	height: 100%;
 	width: 100%;
+	padding: 0px;
 	overflow: hidden;
 }
 
 #grid {
 	height: 100%;
-
+	
 }
 
 
