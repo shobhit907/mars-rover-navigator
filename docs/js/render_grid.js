@@ -5,13 +5,16 @@ jQuery(document).ready(function () {
 	ctx = grid.getContext("2d");
 	ctx.lineWidth = 1;
 	ctx.translate(0.5, 0.5);
-	for (x = 0; x < 40; x++) {
+	grid_area=document.getElementById("grid-area");
+	// console.log("Grid Area : width = "+grid_area.offsetWidth+" , height = "+grid_area.offsetHeight);
+	// console.log("Grid : width = "+grid.width+" , height = "+grid.height);
+	for (x = 0; x < 50; x++) {
 		ctx.beginPath();
 		ctx.moveTo(0, x * sz);
 		ctx.lineTo(grid.width, x * sz);
 		ctx.stroke();
 	}
-	for (x = 0; x < 40; x++) {
+	for (x = 0; x < 50; x++) {
 		ctx.beginPath();
 		ctx.moveTo(x * sz, 0);
 		ctx.lineTo(x * sz, grid.height);
@@ -32,18 +35,28 @@ jQuery(document).ready(function () {
 	img.setAttribute('height', '10px');
 });
 
+function getXY(pixelx,pixely){
+	grid = document.getElementById("grid");
+	grid_area=document.getElementById("grid-area");
+	divide_by=sz*grid_area.offsetHeight/grid.height;
+	X=pixelx/divide_by;
+	Y=pixely/divide_by;
+	X=~~X;
+	Y=~~Y;
+	return [X,Y];
+}
+
 function markStartEnd(event) {
-//	console.log(event);
+	console.log(event);
 	var checked = document.querySelector('input[name="blocktype"]:checked').value;
 	if(!(checked=="start" || checked=="end")){
 		return;
 	}
 	var x=event.clientX,y=event.clientY;
-	x/=40;
-	y/=40;
-	x=~~x;
-	y=~~y;
-//	console.log(x,y);
+	coord=getXY(x,y);
+	x=coord[0];
+	y=coord[1];
+	console.log(x,y);
 	grid = document.getElementById("grid");
 	ctx = grid.getContext("2d");
 	if (checked == "start") {
@@ -55,16 +68,16 @@ function markStartEnd(event) {
 	}
 }
 
+
 function markWall(event){
 	var checked = document.querySelector('input[name="blocktype"]:checked').value;
 	if(!(checked=="wall1" || checked=="wall2")){
 		return;
 	}
 	var x=event.clientX,y=event.clientY;
-	x/=40;
-	y/=40;
-	x=~~x;
-	y=~~y;
+	coord=getXY(x,y);
+	x=coord[0];
+	y=coord[1];
 	if(x===0 && y===0){
 		return;
 	}
@@ -83,13 +96,13 @@ function resetGrid(event){
 	grid = document.getElementById("grid");
 	ctx = grid.getContext("2d");
 	ctx.clearRect(0,0,grid.width,grid.height);
-	for (x = 0; x < 40; x++) {
+	for (x = 0; x < 50; x++) {
 		ctx.beginPath();
 		ctx.moveTo(0, x * sz);
 		ctx.lineTo(grid.width, x * sz);
 		ctx.stroke();
 	}
-	for (x = 0; x < 40; x++) {
+	for (x = 0; x < 50; x++) {
 		ctx.beginPath();
 		ctx.moveTo(x * sz, 0);
 		ctx.lineTo(x * sz, grid.height);
