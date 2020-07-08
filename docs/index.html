@@ -12,7 +12,10 @@
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 		crossorigin="anonymous"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!-- <script type="text/javascript" src="../algorithms/heap.js"></script> -->
 	<script type="text/javascript" src="js/grid_info.js"></script>
+	<script type="text/javascript" src="../algorithms/heap.js"></script>
+	<script type="text/javascript" src="../algorithms/genericAStar.js"></script>
 	<script type="text/javascript" src="js/render_grid.js"></script>
 	<script type="text/javascript" src="../algorithms/Pathfinding.js"></script>
 	<script type="text/javascript" src="../algorithms/idastar.js"></script>
@@ -28,7 +31,8 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-9" id="grid-area">
-				<canvas width="400" height="200" draggable="true" id="grid" onclick="markStartEnd(event)" ondrag="markWall(event)">
+				<canvas width="400" height="200" draggable="true" id="grid" onclick="markStartEnd(event)"
+					ondrag="markWall(event)">
 
 				</canvas>
 			</div>
@@ -56,8 +60,7 @@
 					<div class='Heading'>
 						<h2 id="tools-head">ALGORITHMS</h2>
 					</div>
-					<input class="checkbox-tools-algo" type="radio" id="A-star" name="algo" value="A-star"
-						checked="checked">
+					<input class="checkbox-tools-algo" type="radio" id="A-star" name="algo" value="A-star">
 					<label for="A-star">A*</label>
 					<input class="checkbox-tools-algo" type="radio" id="IDA" name="algo" value="IDA">
 					<label for="IDA">IDA*</label>

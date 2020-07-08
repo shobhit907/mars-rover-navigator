@@ -7,6 +7,7 @@ matrix[x][y]='#'    =>Impassable Wall
 matrix[x][y]='*'    =>Passable Walls
 */
 var startPos=[-1,-1],endPos=[-1,-1];
+var costPassableWall=5;
 var sz=8;
 var rows=50,cols=50;
 var matrix=new Array(rows);
@@ -17,6 +18,6 @@ for(x=0;x<rows;x++){
     }
 }
 jQuery(document).ready(function () {
-    console.log(matrix);
+    // console.log(matrix);
   }
 );
