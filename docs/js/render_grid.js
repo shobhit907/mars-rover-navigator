@@ -126,6 +126,8 @@ function resetGrid(event){
 	}
 }
 
+
+
 function fun1() {
 	var var2 = document.querySelector('input[name="blocktype"]:checked').value;
 	//	console.log(var2);

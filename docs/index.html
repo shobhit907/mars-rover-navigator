@@ -14,6 +14,8 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script type="text/javascript" src="js/grid_info.js"></script>
 	<script type="text/javascript" src="js/render_grid.js"></script>
+	<script type="text/javascript" src="../algorithms/Pathfinding.js"></script>
+	<script type="text/javascript" src="../algorithms/idastar.js"></script>
 
 </head>
 
@@ -46,7 +48,7 @@
 					<br>
 					<input class="checkbox-tools" type="radio" id="wall2" name="blocktype" value="wall2">
 					<label for="wall2">Passable Walls</label>
-					<button class='btn'>START SEARCH</button>
+					<button class='btn' onclick="startsearch(event)">START SEARCH</button>
 					<button class='btn' onclick="resetGrid(event)">RESET ARENA</button>
 				</div>
 				<br>
