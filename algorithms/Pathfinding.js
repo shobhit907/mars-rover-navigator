@@ -9,7 +9,7 @@ function startsearch(event) {
             break;
         case "A-star":
             // console.log("Inside a-star");
-            out = aStar(matrix, startPos, endPos, null, null, false);
+            out = aStar(matrix, startPos, endPos, null, null, true);
             // console.log(out);
             plotPathAndVertices(out);
             break;

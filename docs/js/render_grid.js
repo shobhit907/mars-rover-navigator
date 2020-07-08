@@ -2,6 +2,7 @@ jQuery(document).ready(function () {
 	grid = document.getElementById("grid");
 	ctx = grid.getContext("2d");
 	ctx.lineWidth = 1;
+	ctx.strokeStyle = "black";
 	ctx.translate(0.5, 0.5);
 	// grid_area=document.getElementById("grid-area");
 	// console.log("Grid Area : width = "+grid_area.offsetWidth+" , height = "+grid_area.offsetHeight);
@@ -118,6 +119,7 @@ function markWall(event) {
 function resetGrid(event) {
 	grid = document.getElementById("grid");
 	ctx = grid.getContext("2d");
+	ctx.strokeStyle = "black";
 	ctx.clearRect(0, 0, grid.width, grid.height);
 	for (x = 0; x < rows; x++) {
 		for (y = 0; y < cols; y++) {
