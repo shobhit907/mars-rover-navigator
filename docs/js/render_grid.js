@@ -71,7 +71,7 @@ function markStartEnd(event) {
 		}
 		startPos = [x, y];
 		matrix[x][y] = 'S';
-		ctx.fillStyle = "green";
+		ctx.fillStyle = "#65DE17";
 		ctx.fillRect(x * sz, y * sz, sz, sz);
 	} else if (checked === "end") {
 		if (endPos[0] != -1) {
@@ -81,7 +81,7 @@ function markStartEnd(event) {
 		}
 		endPos = [x, y];
 		matrix[x][y] = 'E';
-		ctx.fillStyle = "red";
+		ctx.fillStyle = "#EE4523";
 		ctx.fillRect(x * sz, y * sz, sz, sz);
 	}
 }
@@ -110,7 +110,7 @@ function markWall(event) {
 		ctx.fillRect(x * sz, y * sz, sz, sz);
 	} else if (checked == "wall2") {
 		matrix[x][y] = '*';
-		ctx.fillStyle = "gray";
+		ctx.fillStyle = "#808080";
 		ctx.fillRect(x * sz, y * sz, sz, sz);
 	}
 }

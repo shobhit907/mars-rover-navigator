@@ -54,7 +54,7 @@ function aStar(gridMatrix, startPos, endPos, heuristic, weight, allowDiagonal, b
         vertices_explored.push(current_vertices_explored);
     }
     if (cells_info[endPos[0]][endPos[1]][3][0] == -2) {
-        return [];
+        return [vertices_explored,[]];
     } else {
         path = getPathByBacktrack(cells_info, startPos, endPos);
         // console.log(path);

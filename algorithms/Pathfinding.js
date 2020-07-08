@@ -10,7 +10,8 @@ function startsearch(event) {
         case "A-star":
             // console.log("Inside a-star");
             out = aStar(matrix, startPos, endPos, null, null, false);
-            console.log(out);
+            // console.log(out);
+            plotPathAndVertices(out);
             break;
         default:
             console.log("Select one algo");
