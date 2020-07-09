@@ -14,7 +14,7 @@ function startsearch(event) {
             plotPathAndVertices(out);
             break;
         case "BreadthFS":
-            out = breadthFS(matrix, startPos, endPos, true, false);
+            out = breadthFS(matrix, startPos, endPos, false, true);
             plotPathAndVertices(out);
             break;
         default:
