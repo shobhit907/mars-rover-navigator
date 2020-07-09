@@ -5,7 +5,8 @@ function startsearch(event) {
     switch (algo) {
         case 'IDA':
             // allowdiagonal=typeof
-            console.log(idastar(matrix, startPos, endPos, true, false, 10000));
+            out=idastar(matrix, startPos, endPos, false, false, 10000);
+            plotPathAndVertices(out);
             break;
         case "A-star":
             // console.log("Inside a-star");
