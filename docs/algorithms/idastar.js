@@ -157,7 +157,7 @@ function idastar(matrix, startPos, endPos, allowDiagonal, biDirectional = false,
 
             //     setTimeout(colornode, 10, path[i], "yellow"); 
             // }
-            return path;
+            return [[],path];
         }
         else if (res == -2) {
             alert("Time Limit Exceeded");
