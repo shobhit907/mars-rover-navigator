@@ -3,7 +3,7 @@ var id;
 
 function plotPathAndVertices(output) {
     level = 0;
-    id = setInterval(plotCurrentVerticesExplored, 10, output);
+    id = setInterval(plotCurrentVerticesExplored, 30, output);
 
 }
 
@@ -11,7 +11,7 @@ function plotCurrentVerticesExplored(vertices_explored) {
     if (level == vertices_explored[0].length) {
         clearInterval(id);
         level = 0;
-        id = setInterval(plotPath, 20, vertices_explored[1]);
+        id = setInterval(plotPath, 50, vertices_explored[1]);
     } else {
         grid = document.getElementById("grid");
         ctx = grid.getContext("2d");

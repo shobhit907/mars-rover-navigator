@@ -4,21 +4,6 @@ jQuery(document).ready(function () {
 	ctx.lineWidth = 1;
 	ctx.strokeStyle = "black";
 	ctx.translate(0.5, 0.5);
-	// grid_area=document.getElementById("grid-area");
-	// console.log("Grid Area : width = "+grid_area.offsetWidth+" , height = "+grid_area.offsetHeight);
-	// console.log("Grid : width = "+grid.width+" , height = "+grid.height);
-	// for (x = 0; x < 50; x++) {
-	// 	ctx.beginPath();
-	// 	ctx.moveTo(0, x * sz);
-	// 	ctx.lineTo(grid.width, x * sz);
-	// 	ctx.stroke();
-	// }
-	// for (x = 0; x < 50; x++) {
-	// 	ctx.beginPath();
-	// 	ctx.moveTo(x * sz, 0);
-	// 	ctx.lineTo(x * sz, grid.height);
-	// 	ctx.stroke();
-	// }
 	for (x = 0; x < rows; x++) {
 		for (y = 0; y < cols; y++) {
 			ctx.strokeRect(x * sz, y * sz, sz, sz);
@@ -72,7 +57,7 @@ function markStartEnd(event) {
 		}
 		startPos = [x, y];
 		matrix[x][y] = 'S';
-		ctx.fillStyle = "#65DE17";
+		ctx.fillStyle = startColor;
 		ctx.fillRect(x * sz, y * sz, sz, sz);
 	} else if (checked === "end") {
 		if (endPos[0] != -1) {
@@ -82,7 +67,7 @@ function markStartEnd(event) {
 		}
 		endPos = [x, y];
 		matrix[x][y] = 'E';
-		ctx.fillStyle = "#EE4523";
+		ctx.fillStyle = endColor;
 		ctx.fillRect(x * sz, y * sz, sz, sz);
 	}
 }
@@ -107,11 +92,11 @@ function markWall(event) {
 	ctx = grid.getContext("2d");
 	if (checked == "wall1") {
 		matrix[x][y] = '#';
-		ctx.fillStyle = "black";
+		ctx.fillStyle = impassableWallColor;
 		ctx.fillRect(x * sz, y * sz, sz, sz);
 	} else if (checked == "wall2") {
 		matrix[x][y] = '*';
-		ctx.fillStyle = "#808080";
+		ctx.fillStyle = passableWallColor;
 		ctx.fillRect(x * sz, y * sz, sz, sz);
 	}
 }
@@ -124,13 +109,32 @@ function resetGrid(event) {
 	for (x = 0; x < rows; x++) {
 		for (y = 0; y < cols; y++) {
 			ctx.strokeRect(x * sz, y * sz, sz, sz);
+			matrix[x][y]='.';
 		}
 	}
 }
 
-
-
-function fun1() {
-	var var2 = document.querySelector('input[name="blocktype"]:checked').value;
-	//	console.log(var2);
+function clearPath(event){
+	grid = document.getElementById("grid");
+	ctx = grid.getContext("2d");
+	ctx.strokeStyle = "black";
+	ctx.clearRect(0, 0, grid.width, grid.height);
+	for (x = 0; x < rows; x++) {
+		for (y = 0; y < cols; y++) {
+			ctx.strokeRect(x * sz, y * sz, sz, sz);
+			if(matrix[x][y]=='.'){
+				continue;
+			}
+			if(matrix[x][y]=='S'){
+				ctx.fillStyle=startColor;
+			}else if(matrix[x][y]=='E'){
+				ctx.fillStyle=endColor;
+			}else if(matrix[x][y]=='#'){
+				ctx.fillStyle=impassableWallColor;
+			}else if(matrix[x][y]=='*'){
+				ctx.fillStyle=passableWallColor;
+			}
+			ctx.fillRect(x*sz,y*sz,sz,sz);
+		}
+	}
 }

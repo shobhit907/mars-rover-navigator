@@ -150,7 +150,7 @@ body,
 }
 
 .btn{
-	margin-top: -2.9em;
+	/* margin-top: -2.9em; */
 	border: solid 1px var(--dark-light);
 	height: 10%;
 	width: 28%;
