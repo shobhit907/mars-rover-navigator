@@ -232,3 +232,10 @@ body,
 	display: block;
 	padding-bottom: 10px;
 }
+
+#algorithms{
+	color: white;
+}
+#accordion{
+	color: black;
+}
