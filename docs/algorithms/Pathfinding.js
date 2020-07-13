@@ -15,7 +15,9 @@ function startsearch(event) {
             plotPathAndVertices(out);
             break;
         case "BreadthFS":
-            out = breadthFS(matrix, startPos, endPos, false, true);
+            var allowDiagonal = document.getElementById("bfs-diag").checked;
+            var bidirectional = document.getElementById("bfs-bi").checked;
+            out = breadthFS(matrix, startPos, endPos, allowDiagonal, bidirectional);
             plotPathAndVertices(out);
             break;
         default:
