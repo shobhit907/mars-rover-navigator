@@ -233,9 +233,15 @@ body,
 	padding-bottom: 10px;
 }
 
-#algorithms{
+/* #algorithms{
 	color: white;
-}
+} */
 #accordion{
 	color: black;
+}
+
+.collapsed{
+	color: blue;
+	background-color: burlywood;
+	width: 100%;
 }
