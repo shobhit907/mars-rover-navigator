@@ -44,7 +44,7 @@
 				</canvas>
 			</div>
 			<div class="col-sm" id="options">
-				<br>
+				
 				<div class="design-tools">
 					<div class='Heading'>
 						<h2 id="tools-head">DESIGN TOOLS</h2>
@@ -63,7 +63,7 @@
 					<button class='btn' onclick="resetGrid(event)">RESET ARENA</button>
 					<button class='btn' onclick="clearPath(event)">CLEAR PATH</button>
 				</div>
-				<br>
+				
 
 				<!-- Algorithm Panel Based on Accordion -->
 
@@ -75,10 +75,11 @@
 						<div class="card">
 							<div class="card-header" id="headingOne">
 								<h5 class="mb-0">
-									<button class="" type="button" data-toggle="collapse" data-target="#collapseOne"
-										aria-expanded="true" aria-controls="collapseOne">
-										A*
-									</button>
+									<input class="checkbox-tools-algo" type="radio" data-toggle="collapse" data-target="#collapseOne"
+										aria-expanded="true" aria-controls="collapseOne" name="algo" id="A-star" value="A-star"
+										checked="true">
+									<label for="A-star">A*</label>
+								
 								</h5>
 							</div>
 
@@ -92,10 +93,10 @@
 						<div class="card">
 							<div class="card-header" id="headingTwo">
 								<h5 class="mb-0">
-									<button class="collapsed" type="button" data-toggle="collapse"
-										data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-										IDA*
-									</button>
+									<input class="collapsed checkbox-tools-algo" type="radio" data-toggle="collapse"
+										data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"
+										name="algo" id="IDA" value="IDA">
+										<label for="IDA">IDA*</label>
 								</h5>
 							</div>
 							<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
@@ -108,11 +109,10 @@
 						<div class="card">
 							<div class="card-header" id="headingThree">
 								<h5 class="mb-0">
-									<button class="collapsed" type="button" data-toggle="collapse"
+									<input class="collapsed checkbox-tools-algo" type="radio" data-toggle="collapse"
 										data-target="#collapseThree" aria-expanded="false"
-										aria-controls="collapseThree">
-										Breadth First Search
-									</button>
+										aria-controls="collapseThree" id="BreadthFS" name="algo" value="BreadthFS">
+										<label for="BreadthFS">Breadth First Search</label>
 								</h5>
 							</div>
 							<div id="collapseThree" class="collapse" aria-labelledby="headingThree"
@@ -125,11 +125,11 @@
 						<div class="card">
 							<div class="card-header" id="headingFour">
 								<h5 class="mb-0">
-									<button class="collapsed" type="button" data-toggle="collapse"
+									<input class="collapsed checkbox-tools-algo" type="radio" data-toggle="collapse"
 										data-target="#collapseFour" aria-expanded="false"
-										aria-controls="collapseFour">
-										Best First Search
-									</button>
+										aria-controls="collapseFour"
+										id="BestFS" name="algo" value="BestFS">
+										<label for="BestFS">Best First Search</label>
 								</h5>
 							</div>
 							<div id="collapseFour" class="collapse" aria-labelledby="headingFour"
@@ -142,11 +142,11 @@
 						<div class="card">
 							<div class="card-header" id="headingFive">
 								<h5 class="mb-0">
-									<button class="collapsed" type="button" data-toggle="collapse"
+									<input class="collapsed checkbox-tools-algo" type="radio" data-toggle="collapse"
 										data-target="#collapseFive" aria-expanded="false"
-										aria-controls="collapseFive">
-										Dijkstra
-									</button>
+										aria-controls="collapseFive"
+										id="Dijkstra" name="algo" value="Dijkstra">
+										<label for="Dijkstra">Dijkstra</label>
 								</h5>
 							</div>
 							<div id="collapseFive" class="collapse" aria-labelledby="headingFive"
@@ -159,11 +159,11 @@
 						<div class="card">
 							<div class="card-header" id="headingSix">
 								<h5 class="mb-0">
-									<button class="collapsed" type="button" data-toggle="collapse"
+									<input class="collapsed checkbox-tools-algo" type="radio" data-toggle="collapse"
 										data-target="#collapseSix" aria-expanded="false"
-										aria-controls="collapseSix">
-										Jump Point Search
-									</button>
+										aria-controls="collapseSix"
+										id="JumpPoint" name="algo" value="JumpPoint">
+										<label for="JumpPoint">Jump Point Search</label>
 								</h5>
 							</div>
 							<div id="collapseSix" class="collapse" aria-labelledby="headingSix"
@@ -176,11 +176,11 @@
 						<div class="card">
 							<div class="card-header" id="headingSeven">
 								<h5 class="mb-0">
-									<button class="collapsed" type="button" data-toggle="collapse"
+									<input class="collapsed checkbox-tools-algo" type="radio" data-toggle="collapse"
 										data-target="#collapseSeven" aria-expanded="false"
-										aria-controls="collapseSeven">
-										Orthogonal Search
-									</button>
+										aria-controls="collapseSeven"
+										id="Ortho" name="algo" value="Ortho">
+										<label for="Ortho">Orthogonal Search</label>
 								</h5>
 							</div>
 							<div id="collapseSeven" class="collapse" aria-labelledby="headingSeven"
@@ -193,11 +193,11 @@
 						<div class="card">
 							<div class="card-header" id="headingSix">
 								<h5 class="mb-0">
-									<button class="collapsed" type="button" data-toggle="collapse"
+									<input class="collapsed checkbox-tools-algo" type="radio" data-toggle="collapse"
 										data-target="#collapseEight" aria-expanded="false"
-										aria-controls="collapseEight">
-										Trace Search
-									</button>
+										aria-controls="collapseEight"
+										id="trace" name="algo" value="trace">
+										<label for="trace">Trace Search</label>
 								</h5>
 							</div>
 							<div id="collapseEight" class="collapse" aria-labelledby="headingEight"
@@ -210,7 +210,7 @@
 					</div>
 				</div>
 
-				<div class="algorithms">
+				<!-- <div class="algorithms">
 					<div class='Heading'>
 						<h2 id="tools-head">ALGORITHMS</h2>
 					</div>
@@ -232,7 +232,8 @@
 					<label for="Ortho">Orthogonal</label>
 					<input class="checkbox-tools-algo" type="radio" id="trace" name="algo" value="trace">
 					<label for="trace">Trace</label>
-				</div>
+				</div> -->
+				
 			</div>
 		</div>
 	</div>
