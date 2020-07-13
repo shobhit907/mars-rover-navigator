@@ -1,5 +1,5 @@
 
-function aStar(gridMatrix, startPos, endPos, heuristic, weight, allowDiagonal, biDirectional) {
+function genericAStar(gridMatrix, startPos, endPos, heuristic, weight, allowDiagonal, biDirectional) {
     startPos = startPos || [-1, -1];
     endPos = endPos || [-1, -1];
     heuristic = heuristic || defaultHeuristic;

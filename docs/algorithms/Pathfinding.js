@@ -5,18 +5,21 @@ function startsearch(event) {
     switch (algo) {
         case 'IDA':
             // allowdiagonal=typeof
-            out=idastar(matrix, startPos, endPos, false, false, 10000);
+            out = idastar(matrix, startPos, endPos, false, false, 10000);
             plotPathAndVertices(out);
             break;
         case "A-star":
-            // console.log("Inside a-star");
-            out = aStar(matrix, startPos, endPos, null, null, true);
-            // console.log(out);
+            heuristic = document.querySelector('input[name="A-star-heuristic"]:checked').value;
+            allowDiagonal = document.getElementById("A-diag").checked;
+            bidirectional = document.getElementById("A-bi").checked;
+            weight = document.getElementById("weight").value;
+            weight = parseFloat(weight);
+            out = AStar(matrix, startPos, endPos, heuristic, weight, allowDiagonal, bidirectional);
             plotPathAndVertices(out);
             break;
         case "BreadthFS":
-            var allowDiagonal = document.getElementById("bfs-diag").checked;
-            var bidirectional = document.getElementById("bfs-bi").checked;
+            allowDiagonal = document.getElementById("bfs-diag").checked;
+            bidirectional = document.getElementById("bfs-bi").checked;
             out = breadthFS(matrix, startPos, endPos, allowDiagonal, bidirectional);
             plotPathAndVertices(out);
             break;

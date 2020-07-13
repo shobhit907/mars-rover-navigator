@@ -41,7 +41,7 @@ function findneigh(node, allowDiagonal, matrix, parent) {
                     }
                     else {
                         if (i == 0) continue;
-                        
+
                         if (allowDiagonal && matrix[x + i][y + j] !== '#') {
                             if (parent[0] !== x + i && parent[1] !== y + j) {
                                 neighbours.push([x + i, y + j]);
@@ -59,13 +59,13 @@ function colornode(node, color) {
     grid = document.getElementById("grid");
     ctx = grid.getContext("2d");
     ctx.fillStyle = color;
-   
+
     x = node[0];
     y = node[1];
 
     ctx.fillRect(x * sz, y * sz, sz, sz);
 }
-function colornode2(node,color){
+function colornode2(node, color) {
     grid = document.getElementById("grid");
     ctx = grid.getContext("2d");
     ctx.fillStyle = color;
@@ -107,7 +107,7 @@ function search(node, g, thr, endPos, allowDiagonal, timelim, matrix, heur, pare
         if (matrix[neighbours[i][0]][neighbours[i][1]] === '*') addg = costPassablewall;
         g = g + addg;
         let res = search(neighbours[i], g, thr, endPos, allowDiagonal, timelim, matrix, heur, node);
-        console.log(node, neighbours[i], "index", i, mnthr,res);
+        console.log(node, neighbours[i], "index", i, mnthr, res);
         g = g - addg;
         if (res == -1) {
             //setTimeout(colornode, 20, node, "white");
@@ -120,7 +120,7 @@ function search(node, g, thr, endPos, allowDiagonal, timelim, matrix, heur, pare
     }
 
     console.log("left", node, thr, g, heur[node[0]][node[1]]);
-  //  setTimeout(colornode2, 100, node, "white");
+    //  setTimeout(colornode2, 100, node, "white");
     return mnthr;
 
 
@@ -142,7 +142,7 @@ function idastar(matrix, startPos, endPos, allowDiagonal, biDirectional = false,
     begintime = begdate.getTime();
     var curtime = begintime;
     var dif = curtime - begintime;
-    while (dif<timelim) {
+    while (dif < timelim) {
         var res = search(startPos, 0, thr, endPos, allowDiagonal, timelim, matrix, heur, [-1, -1]);
         if (res == -1) {
             //add final path
@@ -150,14 +150,14 @@ function idastar(matrix, startPos, endPos, allowDiagonal, biDirectional = false,
             var currdate = new Date();
             curtime = currdate.getTime();
             diff = curtime - begintime;
-            console.log("Time Taken",diff);
+            console.log("Time Taken", diff);
             // grid = document.getElementById("grid");
             // ctx = grid.getContext("2d");
             // for (i = 0; i < path.length - 1; i++) {
 
             //     setTimeout(colornode, 10, path[i], "yellow"); 
             // }
-            return [[],path];
+            return [[], path];
         }
         else if (res == -2) {
             alert("Time Limit Exceeded");
@@ -166,7 +166,7 @@ function idastar(matrix, startPos, endPos, allowDiagonal, biDirectional = false,
         var currdate = new Date();
         curtime = currdate.getTime();
         diff = curtime - begintime;
-      
+
         thr = res;
     }
 
