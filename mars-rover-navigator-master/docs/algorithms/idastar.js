@@ -48,45 +48,7 @@ function getheuristic(matrix, endPos,heuristic) {
         }
     }
     return heur;
-}
-
-// function findneigh(node, allowDiagonal, matrix, parent) {
-//     let neighbours = [];
-//     let x = node[0];
-//     let y = node[1];
-//     // console.log(node);
-//     //console.log(matrix);
-
-//     for (i = 2 * prx - 1; i != 1 - 2 * prx + 1 - 2 * prx; i = i + 1 - 2 * prx) {
-//         if (x + i < 50 && x + i >= 0) {
-
-//             for (j = 2 * pry - 1; j != 1 - 2 * pry + 1 - 2 * pry; j = j + 1 - 2 * pry) {
-//                 if (y + j < 50 && y + j >= 0) {
-
-//                     if (Math.abs(i) !== Math.abs(j)) {
-//                         if (matrix[x + i][y + j] !== '#') {
-//                             if (parent[0] !== x + i || parent[1] !== y + j) {
-
-//                                 neighbours.push([x + i, y + j]);
-//                             }
-//                         }
-
-//                     }
-//                     else {
-//                         if (i == 0) continue;
-
-//                         if (allowDiagonal && matrix[x + i][y + j] !== '#') {
-//                             if (parent[0] !== x + i && parent[1] !== y + j) {
-//                                 neighbours.push([x + i, y + j]);
-//                             }
-//                         }
-//                     }
-//                 }
-//             }
-//         }
-//     }
-//     return neighbours;
-// }
+};
 
 function findneigh(node,allowDiagonal,matrix,parent){
     let vx=[0,0,1,-1,1,-1,-1,1];
@@ -134,10 +96,7 @@ function colornode2(node, color) {
 
     ctx.fillRect(x + 1 * sz, y + 1 * sz, sz - 2, sz - 2);
 }
-// function costnode(node, neighbour) {
-//     //return Math.abs(node[0]-neighbour[0])+Math.abs(node[1]-neighbour[1]);
-//     return (node[0] === neighbour[0] || node[1] === neighbour[1]) ? 1 : Math.SQRT2;
-// }
+
 
 function search(node, g, thr, endPos, allowDiagonal, timelim, matrix, heur, parent) {
     // console.log(heur);
