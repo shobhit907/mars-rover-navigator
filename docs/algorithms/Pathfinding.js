@@ -5,7 +5,14 @@ function startsearch(event) {
     switch (algo) {
         case 'IDA':
             // allowdiagonal=typeof
-            out = idastar(matrix, startPos, endPos, false, false, 10000);
+            heuristic = document.querySelector('input[name="IDA-star-heuristic"]:checked').value;
+           // heuristic ="octile";
+            allowDiagonal = document.getElementById("IDA-diag").checked;
+            bidirectional = document.getElementById("IDA-bi").checked;
+            timelim = document.getElementById("time").value;
+            timelim = parseFloat(timelim);
+            console.log(startPos, endPos, allowDiagonal, bidirectional, timelim,heuristic);
+            out = idastar(matrix, startPos, endPos,heuristic, allowDiagonal, bidirectional, timelim);
             plotPathAndVertices(out);
             break;
         case "A-star":
