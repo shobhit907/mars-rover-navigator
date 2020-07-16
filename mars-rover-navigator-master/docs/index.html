@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width = device-width, initial-scale = 1.0">
+	<title>Mars Rover Navigator</title>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+		crossorigin="anonymous"></script>
+	<link href="./css/style.css" type="text/css" rel="stylesheet">
+	<script type="text/javascript" src="./js/grid_info.js"></script>
+	<script type="text/javascript" src="./algorithms/heap.js"></script>
+	<script type="text/javascript" src="./algorithms/genericAStar.js"></script>
+	<script type="text/javascript" src="./algorithms/AStar.js"></script>
+	<script type="text/javascript" src="./js/render_grid.js"></script>
+	<script type="text/javascript" src="./js/plot_path.js"></script>
+	<script type="text/javascript" src="./algorithms/Pathfinding.js"></script>
+	<script type="text/javascript" src="./algorithms/idastar.js"></script>
+	<script type="text/javascript" src="./algorithms/BreadthFS.js"></script>
+
+</head>
+
+<body>
+	<header>
+		<div class="header">
+
+		</div>
+	</header>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-9" id="grid-area">
+				<canvas width="400" height="200" draggable="true" id="grid" onclick="markStartEnd(event)"
+					ondrag="markWall(event)">
+
+				</canvas>
+			</div>
+			<div class="col-sm" id="options">
+
+				<div class="design-tools">
+					<div class='Heading'>
+						<h2 id="tools-head">DESIGN TOOLS</h2>
+					</div>
+					<input class="checkbox-tools" type="radio" id="start" name="blocktype" value="start"
+						checked="checked">
+					<label for="start">Mark Starting</label>
+					<input class="checkbox-tools" type="radio" id="end" name="blocktype" value="end">
+					<label for="end">Mark Terminus</label>
+					<input class="checkbox-tools" type="radio" id="wall1" name="blocktype" value="wall1">
+					<label for="wall1">Impassable Walls</label>
+					<br>
+					<input class="checkbox-tools" type="radio" id="wall2" name="blocktype" value="wall2">
+					<label for="wall2">Passable Walls</label>
+					<button class='btn' onclick="startsearch(event)">START SEARCH</button>
+					<button class='btn' onclick="resetGrid(event)">RESET ARENA</button>
+					<button class='btn' onclick="clearPath(event)">CLEAR PATH</button>
+				</div>
+
+
+				<!-- Algorithm Panel Based on Accordion -->
+
+				<div class="algorithm_panel panel" id="algorithms">
+					<div class='Heading'>
+						<h2 id="tools-head">ALGORITHMS</h2>
+					</div>
+					<div class="accordion" id="accordion">
+						<div class="card">
+							<div class="card-header" id="headingOne">
+								<h5 class="mb-0">
+									<input class="checkbox-tools-algo" type="radio" data-toggle="collapse"
+										data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"
+										name="algo" id="A-star" value="A-star" checked="true">
+									<label for="A-star">A*</label>
+
+								</h5>
+							</div>
+
+							<div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+								data-parent="#accordion">
+								<div class="card-body">
+									Heuristic
+									<div class="custom-control custom-radio">
+										<input type="radio" class="custom-control-input" id="manhattan"
+											name="A-star-heuristic" value="manhattan" checked>
+										<label class="custom-control-label" for="manhattan">Manhattan</label>
+									</div>
+
+									<!-- Group of default radios - option 2 -->
+									<div class="custom-control custom-radio">
+										<input type="radio" class="custom-control-input" id="euclidean"
+											name="A-star-heuristic" value="euclidean">
+										<label class="custom-control-label" for="euclidean">Euclidean</label>
+									</div>
+
+									<!-- Group of default radios - option 3 -->
+									<div class="custom-control custom-radio">
+										<input type="radio" class="custom-control-input" id="octile"
+											name="A-star-heuristic" value="octile">
+										<label class="custom-control-label" for="octile">Octile</label>
+									</div>
+
+									<!-- Group of default radios - option 4 -->
+									<div class="custom-control custom-radio">
+										<input type="radio" class="custom-control-input" id="chebyshev"
+											name="A-star-heuristic" value="chebyshev">
+										<label class="custom-control-label" for="chebyshev">Chebyshev</label>
+									</div>
+									Options</br>
+									<label for="weight">Weight : </label>
+									<input type="number" class="form-control-sm" id="weight" value="1">
+									<div class="checkbox">
+										<label><input type="checkbox" name="A-diag" id="A-diag" value="" checked="checked"> Allow
+											Diagonal</label>
+									</div>
+									<div class="checkbox">
+										<label><input type="checkbox" name="A-bi" id="A-bi" value=""> Allow
+											Bi-Directional</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-header" id="headingTwo">
+								<h5 class="mb-0">
+									<input class="collapsed checkbox-tools-algo" type="radio" data-toggle="collapse"
+										data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"
+										name="algo" id="IDA" value="IDA">
+									<label for="IDA">IDA*</label>
+								</h5>
+							</div>
+							<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+								data-parent="#accordion">
+								<div class="card-body">
+									Heuristic
+									<form>
+									<div class="custom-control custom-radio">
+										<input type="radio" class="custom-control-input" id="manhattan" name="IDA-star-heuristic" value="manhattan" checked>
+										<label class="custom-control-label" for="manhattan">Manhattan</label>
+									</div>
+									
+									<!-- Group of default radios - option 2 -->
+									<div class="custom-control custom-radio">
+										<input type="radio" class="custom-control-input" id="euclidean" name="IDA-star-heuristic" value="euclidean">
+										<label class="custom-control-label" for="euclidean">Euclidean</label>
+									</div>
+									
+									<!-- Group of default radios - option 3 -->
+									<div class="custom-control custom-radio">
+										
+										<label class="custom-control-label" for="octile">
+											<input type="radio" class="custom-control-input" id="octile" name="IDA-star-heuristic" value="octile">
+											Octile
+										</label>
+									</div>
+									
+									<!-- Group of default radios - option 4 -->
+									<div class="custom-control custom-radio">
+										<input type="radio" class="custom-control-input" id="chebyshev" name="IDA-star-heuristic" value="chebyshev">
+										<label class="custom-control-label" for="chebyshev">Chebyshev</label>
+									</div>
+									</form>
+									Options</br>
+									<label for="weight">Time limit in milliseconds : </label>
+									<input type="number" class="form-control-sm" id="time" value="10000">
+									<div class="checkbox">
+										<label><input type="checkbox" name="IDA-diag" id="IDA-diag" value="" checked="checked"> Allow
+											Diagonal</label>
+									</div>
+									<div class="checkbox">
+										<label><input type="checkbox" name="IDA-bi" id="IDA-bi" value=""> Allow
+											Bi-Directional</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-header" id="headingThree">
+								<h5 class="mb-0">
+									<input class="collapsed checkbox-tools-algo" type="radio" data-toggle="collapse"
+										data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"
+										id="BreadthFS" name="algo" value="BreadthFS">
+									<label for="BreadthFS">Breadth First Search</label>
+								</h5>
+							</div>
+							<div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+								data-parent="#accordion">
+								<div class="card-body">
+									Options
+									<div class="checkbox">
+										<label><input type="checkbox" name="bfs-diag" id="bfs-diag" value=""> Allow
+											Diagonal</label>
+									</div>
+									<div class="checkbox">
+										<label><input type="checkbox" name="bfs-bi" id="bfs-bi" value=""> Allow
+											Bi-Directional</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-header" id="headingFour">
+								<h5 class="mb-0">
+									<input class="collapsed checkbox-tools-algo" type="radio" data-toggle="collapse"
+										data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour"
+										id="BestFS" name="algo" value="BestFS">
+									<label for="BestFS">Best First Search</label>
+								</h5>
+							</div>
+							<div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+								data-parent="#accordion">
+								<div class="card-body">
+									Heuristic
+									<div class="custom-control custom-radio">
+										<input type="radio" class="custom-control-input" id="defaultGroupExample9"
+											name="groupOfDefaultRadios">
+										<label class="custom-control-label" for="defaultGroupExample9">Manhattan</label>
+									</div>
+
+									<!-- Group of default radios - option 2 -->
+									<div class="custom-control custom-radio">
+										<input type="radio" class="custom-control-input" id="defaultGroupExample10"
+											name="groupOfDefaultRadios" checked>
+										<label class="custom-control-label"
+											for="defaultGroupExample10">Euclidean</label>
+									</div>
+
+									<!-- Group of default radios - option 3 -->
+									<div class="custom-control custom-radio">
+										<input type="radio" class="custom-control-input" id="defaultGroupExample11"
+											name="groupOfDefaultRadios">
+										<label class="custom-control-label" for="defaultGroupExample11">Octile</label>
+									</div>
+
+									<!-- Group of default radios - option 4 -->
+									<div class="custom-control custom-radio">
+										<input type="radio" class="custom-control-input" id="defaultGroupExample12"
+											name="groupOfDefaultRadios">
+										<label class="custom-control-label"
+											for="defaultGroupExample12">Chebyshev</label>
+									</div>
+									Options
+									<div class="checkbox">
+										<label><input type="checkbox" name="A-diag" id="A-diag" value=""> Allow
+											Diagonal</label>
+									</div>
+									<div class="checkbox">
+										<label><input type="checkbox" name="A-bi" id="A-bi" value=""> Allow
+											Bi-Directional</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-header" id="headingFive">
+								<h5 class="mb-0">
+									<input class="collapsed checkbox-tools-algo" type="radio" data-toggle="collapse"
+										data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive"
+										id="Dijkstra" name="algo" value="Dijkstra">
+									<label for="Dijkstra">Dijkstra</label>
+								</h5>
+							</div>
+							<div id="collapseFive" class="collapse" aria-labelledby="headingFive"
+								data-parent="#accordion">
+								<div class="card-body">
+									Options
+									<div class="checkbox">
+										<label><input type="checkbox" name="A-diag" id="A-diag" value=""> Allow
+											Diagonal</label>
+									</div>
+									<div class="checkbox">
+										<label><input type="checkbox" name="A-bi" id="A-bi" value=""> Allow
+											Bi-Directional</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-header" id="headingSix">
+								<h5 class="mb-0">
+									<input class="collapsed checkbox-tools-algo" type="radio" data-toggle="collapse"
+										data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix"
+										id="JumpPoint" name="algo" value="JumpPoint">
+									<label for="JumpPoint">Jump Point Search</label>
+								</h5>
+							</div>
+							<div id="collapseSix" class="collapse" aria-labelledby="headingSix"
+								data-parent="#accordion">
+								<div class="card-body">
+									Heuristic
+									<div class="custom-control custom-radio">
+										<input type="radio" class="custom-control-input" id="defaultGroupExample13"
+											name="groupOfDefaultRadios">
+										<label class="custom-control-label"
+											for="defaultGroupExample13">Manhattan</label>
+									</div>
+
+									<!-- Group of default radios - option 2 -->
+									<div class="custom-control custom-radio">
+										<input type="radio" class="custom-control-input" id="defaultGroupExample14"
+											name="groupOfDefaultRadios" checked>
+										<label class="custom-control-label"
+											for="defaultGroupExample14">Euclidean</label>
+									</div>
+
+									<!-- Group of default radios - option 3 -->
+									<div class="custom-control custom-radio">
+										<input type="radio" class="custom-control-input" id="defaultGroupExample15"
+											name="groupOfDefaultRadios">
+										<label class="custom-control-label" for="defaultGroupExample15">Octile</label>
+									</div>
+
+									<!-- Group of default radios - option 4 -->
+									<div class="custom-control custom-radio">
+										<input type="radio" class="custom-control-input" id="defaultGroupExample16"
+											name="groupOfDefaultRadios">
+										<label class="custom-control-label"
+											for="defaultGroupExample16">Chebyshev</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-header" id="headingSeven">
+								<h5 class="mb-0">
+									<input class="collapsed checkbox-tools-algo" type="radio" data-toggle="collapse"
+										data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven"
+										id="Ortho" name="algo" value="Ortho">
+									<label for="Ortho">Orthogonal Search</label>
+								</h5>
+							</div>
+							<div id="collapseSeven" class="collapse" aria-labelledby="headingSeven"
+								data-parent="#accordion">
+								<div class="card-body">
+									Heuristic
+									<div class="custom-control custom-radio">
+										<input type="radio" class="custom-control-input" id="defaultGroupExample17"
+											name="groupOfDefaultRadios">
+										<label class="custom-control-label"
+											for="defaultGroupExample17">Manhattan</label>
+									</div>
+
+									<!-- Group of default radios - option 2 -->
+									<div class="custom-control custom-radio">
+										<input type="radio" class="custom-control-input" id="defaultGroupExample18"
+											name="groupOfDefaultRadios" checked>
+										<label class="custom-control-label"
+											for="defaultGroupExample18">Euclidean</label>
+									</div>
+
+									<!-- Group of default radios - option 3 -->
+									<div class="custom-control custom-radio">
+										<input type="radio" class="custom-control-input" id="defaultGroupExample19"
+											name="groupOfDefaultRadios">
+										<label class="custom-control-label" for="defaultGroupExample19">Octile</label>
+									</div>
+
+									<!-- Group of default radios - option 4 -->
+									<div class="custom-control custom-radio">
+										<input type="radio" class="custom-control-input" id="defaultGroupExample20"
+											name="groupOfDefaultRadios">
+										<label class="custom-control-label"
+											for="defaultGroupExample20">Chebyshev</label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- <div class="algorithms">
+					<div class='Heading'>
+						<h2 id="tools-head">ALGORITHMS</h2>
+					</div>
+					<input class="checkbox-tools-algo" type="radio" id="A-star" name="algo" value="A-star">
+					<label for="A-star">A*</label>
+					<input class="checkbox-tools-algo" type="radio" id="IDA" name="algo" value="IDA">
+					<label for="IDA">IDA*</label>
+					<input class="checkbox-tools-algo" type="radio" id="BreadthFS" name="algo" value="BreadthFS">
+					<label for="BreadthFS">Breadth-FS</label>
+					<br>
+					<input class="checkbox-tools-algo" type="radio" id="BestFS" name="algo" value="BestFS">
+					<label for="BestFS">Best-FS</label>
+					<input class="checkbox-tools-algo" type="radio" id="Dijkstra" name="algo" value="Dijkstra">
+					<label for="Dijkstra">Dijkstra</label>
+					<input class="checkbox-tools-algo" type="radio" id="JumpPoint" name="algo" value="JumpPoint">
+					<label for="JumpPoint">Jump Point</label>
+					<br>
+					<input class="checkbox-tools-algo" type="radio" id="Ortho" name="algo" value="Ortho">
+					<label for="Ortho">Orthogonal</label>
+					<input class="checkbox-tools-algo" type="radio" id="trace" name="algo" value="trace">
+					<label for="trace">Trace</label>
+				</div> -->
+
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+</body>
+
+</html>
