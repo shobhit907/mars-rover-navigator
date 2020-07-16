@@ -141,39 +141,42 @@
 								data-parent="#accordion">
 								<div class="card-body">
 									Heuristic
+									<form>
 									<div class="custom-control custom-radio">
-										<input type="radio" class="custom-control-input" id="defaultGroupExample5"
-											name="groupOfDefaultRadios">
-										<label class="custom-control-label" for="defaultGroupExample5">Manhattan</label>
+										<input type="radio" class="custom-control-input" id="manhattan" name="IDA-star-heuristic" value="manhattan" checked>
+										<label class="custom-control-label" for="manhattan">Manhattan</label>
 									</div>
-
+									
 									<!-- Group of default radios - option 2 -->
 									<div class="custom-control custom-radio">
-										<input type="radio" class="custom-control-input" id="defaultGroupExample6"
-											name="groupOfDefaultRadios" checked>
-										<label class="custom-control-label" for="defaultGroupExample6">Euclidean</label>
+										<input type="radio" class="custom-control-input" id="euclidean" name="IDA-star-heuristic" value="euclidean">
+										<label class="custom-control-label" for="euclidean">Euclidean</label>
 									</div>
-
+									
 									<!-- Group of default radios - option 3 -->
 									<div class="custom-control custom-radio">
-										<input type="radio" class="custom-control-input" id="defaultGroupExample7"
-											name="groupOfDefaultRadios">
-										<label class="custom-control-label" for="defaultGroupExample7">Octile</label>
+										
+										<label class="custom-control-label" for="octile">
+											<input type="radio" class="custom-control-input" id="octile" name="IDA-star-heuristic" value="octile">
+											Octile
+										</label>
 									</div>
-
+									
 									<!-- Group of default radios - option 4 -->
 									<div class="custom-control custom-radio">
-										<input type="radio" class="custom-control-input" id="defaultGroupExample8"
-											name="groupOfDefaultRadios">
-										<label class="custom-control-label" for="defaultGroupExample8">Chebyshev</label>
+										<input type="radio" class="custom-control-input" id="chebyshev" name="IDA-star-heuristic" value="chebyshev">
+										<label class="custom-control-label" for="chebyshev">Chebyshev</label>
 									</div>
-									Options
+									</form>
+									Options</br>
+									<label for="weight">Time limit in milliseconds : </label>
+									<input type="number" class="form-control-sm" id="time" value="10000">
 									<div class="checkbox">
-										<label><input type="checkbox" name="A-diag" id="A-diag" value=""> Allow
+										<label><input type="checkbox" name="IDA-diag" id="IDA-diag" value="" checked="checked"> Allow
 											Diagonal</label>
 									</div>
 									<div class="checkbox">
-										<label><input type="checkbox" name="A-bi" id="A-bi" value=""> Allow
+										<label><input type="checkbox" name="IDA-bi" id="IDA-bi" value=""> Allow
 											Bi-Directional</label>
 									</div>
 								</div>
