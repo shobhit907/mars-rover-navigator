@@ -3,7 +3,9 @@ function genericAStar(gridMatrix, startPos, endPos, heuristic, weight, allowDiag
     startPos = startPos || [-1, -1];
     endPos = endPos || [-1, -1];
     heuristic = heuristic || defaultHeuristic;
-    weight = weight || 1;
+    if(weight==null){
+        weight=1;
+    }
     allowDiagonal = allowDiagonal || false;
     biDirectional = biDirectional || false;
     if (startPos[0] == -1 || startPos[1] == -1 || endPos[0] == -1 || endPos[1] == -1) {
