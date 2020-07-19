@@ -2,6 +2,7 @@ var level = 0;
 var id;
 
 function plotPathAndVertices(output) {
+    clearPath();
     level = 0;
     id = setInterval(plotCurrentVerticesExplored, 30, output);
 
