@@ -5,8 +5,8 @@ function startsearch(event) {
     switch (algo) {
         case 'IDA':
             // allowdiagonal=typeof
-           // heuristic = document.querySelector('input[name="IDA-star-heuristic"]:checked').value;
-            heuristic ="chebyshev";
+            heuristic = document.querySelector('input[name="IDA-star-heuristic"]:checked').value;
+           // heuristic ="chebyshev";
             allowDiagonal = document.getElementById("IDA-diag").checked;
             showrecursion = document.getElementById("IDA-rec").checked;
             weight = document.getElementById("weight-ida").value;
