@@ -2,8 +2,8 @@
 var path = [];
 var begintime = 0;
 var prx, pry;
+v
 
-//heuristics
 function manhattanHeuristic(pos1, pos2) {
     return Math.floor(Math.abs(pos1[0] - pos2[0]) + Math.abs(pos1[1] - pos2[1]));
 }
@@ -23,7 +23,6 @@ function octileHeuristic(pos1, pos2) {
     return (dx < dy) ? F * dx + dy : F * dy + dx;
 }
 
-//create matrix with heuristic values of each position wrt endPos
 function getheuristic(matrix, endPos,heuristic) {
     heuristicfunc = null;
    
@@ -54,7 +53,12 @@ function getheuristic(matrix, endPos,heuristic) {
     return heur;
 };
 
-//return list of neighbours of node, excluding parent node
+function costnode(node,par){
+    return 1;
+    console.log(node[0],par[0],node[1],par[1]);
+    return (node[0] === par[0] || node[1] === par[1])? 1  : Math.SQRT2;
+}
+
 function findneigh(node,allowDiagonal,matrix,parent){
     let vx=[0,0,1,-1,1,-1,-1,1];
     let vy=[1,-1,0,0,1,-1,1,-1];
@@ -68,7 +72,6 @@ function findneigh(node,allowDiagonal,matrix,parent){
             }
         }
     }
-    //if diagonal neighbours allowed, add them to list
     if(allowDiagonal){
         for(let i=4;i<8;i++){
             if (xx + prx * vx[i] >= 0 && xx + prx * vx[i] < rows && yy + pry * vy[i] >= 0 && yy + pry * vy[i] < cols) {
@@ -82,7 +85,6 @@ function findneigh(node,allowDiagonal,matrix,parent){
     return neighbours;
 }
 
-//color nodes explored recursively
 function colornode(node, color) {
     grid = document.getElementById("grid");
     ctx = grid.getContext("2d");
@@ -93,8 +95,6 @@ function colornode(node, color) {
 
     ctx.fillRect(x * sz, y * sz, sz, sz);
 }
-
-//reset them to original state after realisiing they are not on path, left for now
 // function colornode2(node, color) {
 //     grid = document.getElementById("grid");
 //     ctx = grid.getContext("2d");
@@ -106,10 +106,10 @@ function colornode(node, color) {
 //    // ctx.fillRect(x + 1 * sz, y + 1 * sz, sz - 2, sz - 2);
 // }
 
-//recursive search function
+
 function search(node, g, thr, endPos, allowDiagonal, timelim, matrix, heur, parent,showrec,weight) {
 
-   //checking for timelimit
+    // console.log(weight,timelim);
     var currdate = new Date();
     curtime = currdate.getTime();
     var diff = curtime - begintime;
@@ -117,69 +117,62 @@ function search(node, g, thr, endPos, allowDiagonal, timelim, matrix, heur, pare
         return -2;
     }
 
-   // console.log("entered", node, thr, g, heur[node[0]][node[1]]);
+    console.log("entered", node, thr, g, heur[node[0]][node[1]]);
 
     let f = g + heur[node[0]][node[1]]*weight;   
-    if (f > thr) //overshot the allowed threshold
-    {
-       // console.log("left", node, thr, g, heur[node[0]][node[1]]);
+    if (f > thr) {
+        console.log("left", node, thr, g, heur[node[0]][node[1]]);
         return f;
     }
-
-    //visualising recursion
     if(showrec)
         setTimeout(colornode, 10, node, "rgba(13, 65, 175, 0.16)");
     
-    if (node[0] == endPos[0] && node[1] == endPos[1]) return -1; //endpos reached
+    if (node[0] == endPos[0] && node[1] == endPos[1]) return -1;
    
     let neighbours = findneigh(node, allowDiagonal, matrix, parent);
 
-    //an optimisation- to get better paths
     neighbours.sort(function (a, b) {
        return heuristicfunc(a, endPos) - heuristicfunc(b, endPos);
     });
 
-  
+  //  console.log(neighbours);
     let neighl = neighbours.length;// 3d array with ith entry having x and y coordinates in grid matrix
-    let mnthr = timelim + 1; //infinity
+    let mnthr = timelim + 1;
     for (let i = 0; i < neighl; i++) {
-        
-        //if node already exists on currently exploring path, do not visit it again
-        if (vis[neighbours[i][0]][neighbours[i][1]]!==0) continue;
+        // co
+
+          if (vis[neighbours[i][0]][neighbours[i][1]]!==0) continue;
+       // let addg = heuristicfunc(neighbours[i],node);
+      //  
+
+      //  if (matrix[neighbours[i][0]][neighbours[i][1]] === '*') addg = addg*weight;
+        // console.log(addg, "addg", matrix[neighbours[i][0]][neighbours[i][1]]);
+       //  g = g + addg;
+        // console.log(g,"g",addg, "addg", matrix[neighbours[i][0]][neighbours[i][1]]);
       
         let org=g;
-        g=heuristicfunc(neighbours[i],startPos);
-
-        //array storing nodes on path
+       //g=heuristicfunc(neighbours[i],startPos);
         path.push(neighbours[i]);
         vis[neighbours[i][0]][neighbours[i][1]]=1;
         let res = search(neighbours[i], g, thr, endPos, allowDiagonal, timelim, matrix, heur, node,showrec,weight);
-        
-        //if endnode reached, return 
+       // console.log(node, neighbours[i], "index", i, mnthr, res);
+      g=org;
+        vis[neighbours[i][0]][neighbours[i][1]] = 0;
+       // g = g - addg;
         if (res == -1) {
             //setTimeout(colornode, 20, node, "white");
             return -1;
         }
-
-        //timelimit crossed, return
         if(res==-2){
             return -2;
         }
-
-        //restore g
-        g = org;
-
-        //current neighbour not on path, set vis to 0
-        vis[neighbours[i][0]][neighbours[i][1]] = 0;
         path.pop()
-
-        //get min threshold for deepening
         if (res < mnthr) {
             mnthr = res;
         }
     }
 
-   // console.log("left", node, thr, g, heur[node[0]][node[1]]);
+    console.log("left", node, thr, g, heur[node[0]][node[1]]);
     //  setTimeout(colornode2, 20000, node,);
     return mnthr;
 
@@ -187,18 +180,16 @@ function search(node, g, thr, endPos, allowDiagonal, timelim, matrix, heur, pare
 }
 
 function idastar(matrix, startPos, endPos,heuristic, allowDiagonal, showrec = true, timelim = 100000,weight) {
-    
+    console.log(weight);
     path = [];
     cutoff = timelim;
-   
+    console.log(startPos, endPos);
     heur = getheuristic(matrix, endPos,heuristic);
     prx = endPos[0] > startPos[0];
     pry = endPos[1] > startPos[1];
     if(prx===false) prx=-1;
     if(pry===false) pry=-1;
-    //console.log(prx,pry);
-
-    //shortest possible path would be of heuristic score of startpos from endpos
+    console.log(prx,pry);
     var thr = heur[startPos[0]][startPos[1]];
 
     var begdate = new Date();
@@ -206,12 +197,11 @@ function idastar(matrix, startPos, endPos,heuristic, allowDiagonal, showrec = tr
     var curtime = begintime;
     var dif = curtime - begintime;
     
-    //upper limit on time
     while (dif < timelim) {
         var res = search(startPos, 0, thr, endPos, allowDiagonal, timelim, matrix, heur, [-1, -1],showrec,weight);
         if (res == -1) {
             //add final path
-            //console.log(path);
+            console.log(path);
             var currdate = new Date();
             curtime = currdate.getTime();
             diff = curtime - begintime;
@@ -227,7 +217,6 @@ function idastar(matrix, startPos, endPos,heuristic, allowDiagonal, showrec = tr
         curtime = currdate.getTime();
         diff = curtime - begintime;
 
-        //update threshold
         thr = res;
     }
 
