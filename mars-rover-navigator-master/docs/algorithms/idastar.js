@@ -2,6 +2,7 @@
 var path = [];
 var begintime = 0;
 var prx, pry;
+v
 
 function manhattanHeuristic(pos1, pos2) {
     return Math.floor(Math.abs(pos1[0] - pos2[0]) + Math.abs(pos1[1] - pos2[1]));
@@ -23,7 +24,7 @@ function octileHeuristic(pos1, pos2) {
 }
 
 function getheuristic(matrix, endPos,heuristic) {
-    let heuristicfunc = null;
+    heuristicfunc = null;
    
     if (heuristic == "manhattan") {
         heuristicfunc = manhattanHeuristic;
@@ -38,17 +39,25 @@ function getheuristic(matrix, endPos,heuristic) {
     var rows = 50, cols = 50;
 
     var heur = new Array(rows);
+    vis=new Array(rows);
     for (x = 0; x < matrix.length; ++x) {
 
         heur[x] = new Array(cols);
+        vis[x]=new Array(cols);
         for (y = 0; y < cols; y++) {
 
             heur[x][y] = heuristicfunc(endPos,[x,y]);// Math.abs(endPos[0] - x) + Math.abs(endPos[1] - y);//manhattan distance from endpos
-            
+            vis[x][y]=0;
         }
     }
     return heur;
 };
+
+function costnode(node,par){
+    return 1;
+    console.log(node[0],par[0],node[1],par[1]);
+    return (node[0] === par[0] || node[1] === par[1])? 1  : Math.SQRT2;
+}
 
 function findneigh(node,allowDiagonal,matrix,parent){
     let vx=[0,0,1,-1,1,-1,-1,1];
@@ -86,20 +95,21 @@ function colornode(node, color) {
 
     ctx.fillRect(x * sz, y * sz, sz, sz);
 }
-function colornode2(node, color) {
-    grid = document.getElementById("grid");
-    ctx = grid.getContext("2d");
-    ctx.fillStyle = color;
+// function colornode2(node, color) {
+//     grid = document.getElementById("grid");
+//     ctx = grid.getContext("2d");
+//     //ctx.fillStyle = color;
 
-    x = node[0];
-    y = node[1];
+//     x = node[0];
+//     y = node[1];
+//     ctx.clearRect(x*sz +1, y*sz +1, sz-2, sz-2);
+//    // ctx.fillRect(x + 1 * sz, y + 1 * sz, sz - 2, sz - 2);
+// }
 
-    ctx.fillRect(x + 1 * sz, y + 1 * sz, sz - 2, sz - 2);
-}
 
+function search(node, g, thr, endPos, allowDiagonal, timelim, matrix, heur, parent,showrec,weight) {
 
-function search(node, g, thr, endPos, allowDiagonal, timelim, matrix, heur, parent) {
-    // console.log(heur);
+    // console.log(weight,timelim);
     var currdate = new Date();
     curtime = currdate.getTime();
     var diff = curtime - begintime;
@@ -109,29 +119,52 @@ function search(node, g, thr, endPos, allowDiagonal, timelim, matrix, heur, pare
 
     console.log("entered", node, thr, g, heur[node[0]][node[1]]);
 
-    let f = g + heur[node[0]][node[1]];   
-    if (f > thr) return f;
-
-    setTimeout(colornode, 10, node, "rgba(13, 65, 175, 0.16)");
+    let f = g + heur[node[0]][node[1]]*weight;   
+    if (f > thr) {
+        console.log("left", node, thr, g, heur[node[0]][node[1]]);
+        return f;
+    }
+    if(showrec)
+        setTimeout(colornode, 10, node, "rgba(13, 65, 175, 0.16)");
     
     if (node[0] == endPos[0] && node[1] == endPos[1]) return -1;
    
     let neighbours = findneigh(node, allowDiagonal, matrix, parent);
-    console.log(neighbours);
+
+    neighbours.sort(function (a, b) {
+       return heuristicfunc(a, endPos) - heuristicfunc(b, endPos);
+    });
+
+  //  console.log(neighbours);
     let neighl = neighbours.length;// 3d array with ith entry having x and y coordinates in grid matrix
     let mnthr = timelim + 1;
     for (let i = 0; i < neighl; i++) {
         // co
-        let addg = 1;
-        if (matrix[neighbours[i][0]][neighbours[i][1]] === '*') addg = costPassablewall;
-        g = g + addg;
+
+          if (vis[neighbours[i][0]][neighbours[i][1]]!==0) continue;
+       // let addg = heuristicfunc(neighbours[i],node);
+      //  
+
+      //  if (matrix[neighbours[i][0]][neighbours[i][1]] === '*') addg = addg*weight;
+        // console.log(addg, "addg", matrix[neighbours[i][0]][neighbours[i][1]]);
+       //  g = g + addg;
+        // console.log(g,"g",addg, "addg", matrix[neighbours[i][0]][neighbours[i][1]]);
+      
+        let org=g;
+       //g=heuristicfunc(neighbours[i],startPos);
         path.push(neighbours[i]);
-        let res = search(neighbours[i], g, thr, endPos, allowDiagonal, timelim, matrix, heur, node);
-        console.log(node, neighbours[i], "index", i, mnthr, res);
-        g = g - addg;
+        vis[neighbours[i][0]][neighbours[i][1]]=1;
+        let res = search(neighbours[i], g, thr, endPos, allowDiagonal, timelim, matrix, heur, node,showrec,weight);
+       // console.log(node, neighbours[i], "index", i, mnthr, res);
+      g=org;
+        vis[neighbours[i][0]][neighbours[i][1]] = 0;
+       // g = g - addg;
         if (res == -1) {
             //setTimeout(colornode, 20, node, "white");
             return -1;
+        }
+        if(res==-2){
+            return -2;
         }
         path.pop()
         if (res < mnthr) {
@@ -140,13 +173,14 @@ function search(node, g, thr, endPos, allowDiagonal, timelim, matrix, heur, pare
     }
 
     console.log("left", node, thr, g, heur[node[0]][node[1]]);
-    //  setTimeout(colornode2, 100, node, "white");
+    //  setTimeout(colornode2, 20000, node,);
     return mnthr;
 
 
 }
 
-function idastar(matrix, startPos, endPos,heuristic, allowDiagonal, biDirectional = false, timelim = 100000) {
+function idastar(matrix, startPos, endPos,heuristic, allowDiagonal, showrec = true, timelim = 100000,weight) {
+    console.log(weight);
     path = [];
     cutoff = timelim;
     console.log(startPos, endPos);
@@ -164,7 +198,7 @@ function idastar(matrix, startPos, endPos,heuristic, allowDiagonal, biDirectiona
     var dif = curtime - begintime;
     
     while (dif < timelim) {
-        var res = search(startPos, 0, thr, endPos, allowDiagonal, timelim, matrix, heur, [-1, -1]);
+        var res = search(startPos, 0, thr, endPos, allowDiagonal, timelim, matrix, heur, [-1, -1],showrec,weight);
         if (res == -1) {
             //add final path
             console.log(path);
