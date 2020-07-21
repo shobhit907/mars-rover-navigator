@@ -22,6 +22,8 @@
 	<script type="text/javascript" src="./algorithms/heap.js"></script>
 	<script type="text/javascript" src="./algorithms/genericAStar.js"></script>
 	<script type="text/javascript" src="./algorithms/AStar.js"></script>
+	<script type="text/javascript" src="./algorithms/BestFS.js"></script>
+	<script type="text/javascript" src="./algorithms/dijkstra.js"></script>
 	<script type="text/javascript" src="./js/render_grid.js"></script>
 	<script type="text/javascript" src="./js/plot_path.js"></script>
 	<script type="text/javascript" src="./algorithms/Pathfinding.js"></script>
@@ -118,8 +120,7 @@
 									<label for="weight">Weight : </label>
 									<input type="number" class="form-control-sm" id="weight" value="1">
 									<div class="checkbox">
-										<label><input type="checkbox" name="A-diag" id="A-diag" value=""
-												> Allow
+										<label><input type="checkbox" name="A-diag" id="A-diag" value=""> Allow
 											Diagonal</label>
 									</div>
 									<div class="checkbox">
@@ -187,7 +188,8 @@
 											Diagonal</label>
 									</div>
 									<div class="checkbox">
-										<label><input type="checkbox" name="IDA-rec" id="IDA-rec" value="" checked="checked">Show recursion path </label>
+										<label><input type="checkbox" name="IDA-rec" id="IDA-rec" value=""
+												checked="checked">Show recursion path </label>
 									</div>
 
 								</div>
@@ -231,40 +233,39 @@
 								<div class="card-body">
 									Heuristic
 									<div class="custom-control custom-radio">
-										<input type="radio" class="custom-control-input" id="defaultGroupExample9"
-											name="groupOfDefaultRadios">
-										<label class="custom-control-label" for="defaultGroupExample9">Manhattan</label>
+										<input type="radio" class="custom-control-input" id="BestFS-manhattan"
+											value="BestFS-manhattan" name="BestFS-heuristic" checked>
+										<label class="custom-control-label" for="BestFS-manhattan">Manhattan</label>
 									</div>
 
 									<!-- Group of default radios - option 2 -->
 									<div class="custom-control custom-radio">
-										<input type="radio" class="custom-control-input" id="defaultGroupExample10"
-											name="groupOfDefaultRadios" checked>
-										<label class="custom-control-label"
-											for="defaultGroupExample10">Euclidean</label>
+										<input type="radio" class="custom-control-input" id="BestFS-euclidean"
+											name="BestFS-heuristic" value="euclidean">
+										<label class="custom-control-label" for="BestFS-euclidean">Euclidean</label>
 									</div>
 
 									<!-- Group of default radios - option 3 -->
 									<div class="custom-control custom-radio">
-										<input type="radio" class="custom-control-input" id="defaultGroupExample11"
-											name="groupOfDefaultRadios">
-										<label class="custom-control-label" for="defaultGroupExample11">Octile</label>
+										<input type="radio" class="custom-control-input" id="BestFS-octile"
+											name="BestFS-heuristic" value="octile">
+										<label class="custom-control-label" for="BestFS-octile">Octile</label>
 									</div>
 
 									<!-- Group of default radios - option 4 -->
 									<div class="custom-control custom-radio">
-										<input type="radio" class="custom-control-input" id="defaultGroupExample12"
-											name="groupOfDefaultRadios">
-										<label class="custom-control-label"
-											for="defaultGroupExample12">Chebyshev</label>
+										<input type="radio" class="custom-control-input" id="BestFS-chebyshev"
+											name="BestFS-heuristic" value="chebyshev">
+										<label class="custom-control-label" for="BestFS-chebyshev">Chebyshev</label>
 									</div>
 									Options
 									<div class="checkbox">
-										<label><input type="checkbox" name="A-diag" id="A-diag" value=""> Allow
+										<label><input type="checkbox" name="BestFS-diag" id="BestFS-diag" value="">
+											Allow
 											Diagonal</label>
 									</div>
 									<div class="checkbox">
-										<label><input type="checkbox" name="A-bi" id="A-bi" value=""> Allow
+										<label><input type="checkbox" name="BestFS-bi" id="BestFS-bi" value=""> Allow
 											Bi-Directional</label>
 									</div>
 								</div>
@@ -284,11 +285,13 @@
 								<div class="card-body">
 									Options
 									<div class="checkbox">
-										<label><input type="checkbox" name="A-diag" id="A-diag" value=""> Allow
+										<label><input type="checkbox" name="dijkstra-diag" id="dijkstra-diag" value="">
+											Allow
 											Diagonal</label>
 									</div>
 									<div class="checkbox">
-										<label><input type="checkbox" name="A-bi" id="A-bi" value=""> Allow
+										<label><input type="checkbox" name="dijkstra-bi" id="dijkstra-bi" value="">
+											Allow
 											Bi-Directional</label>
 									</div>
 								</div>

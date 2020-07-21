@@ -32,6 +32,19 @@ function startsearch(event) {
             out = breadthFS(matrix, startPos, endPos, allowDiagonal, bidirectional);
             plotPathAndVertices(out);
             break;
+        case "BestFS":
+            heuristic = document.querySelector('input[name="BestFS-heuristic"]:checked').value;
+            allowDiagonal = document.getElementById("BestFS-diag").checked;
+            bidirectional = document.getElementById("BestFS-bi").checked;
+            out=BestFS(matrix,startPos,endPos,heuristic,allowDiagonal,bidirectional);
+            plotPathAndVertices(out);
+            break;
+        case "Dijkstra":
+            allowDiagonal = document.getElementById("dijkstra-diag").checked;
+            bidirectional = document.getElementById("dijkstra-bi").checked;
+            out=dijkstra(matrix,startPos,endPos,allowDiagonal,bidirectional);
+            plotPathAndVertices(out);
+            break;
         default:
             console.log("Select one algo");
     }
