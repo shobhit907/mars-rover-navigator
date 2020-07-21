@@ -96,6 +96,8 @@ function markWall(event) {
 		ctx.fillRect(x * sz, y * sz, sz, sz);
 	} else if (checked == "wall2") {
 		matrix[x][y] = '*';
+		// ctx.fillStyle="red";
+		// ctx.fillText("A",x*sz,(y+1)*sz);
 		ctx.fillStyle = passableWallColor;
 		ctx.fillRect(x * sz, y * sz, sz, sz);
 	}

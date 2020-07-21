@@ -6,13 +6,15 @@ function startsearch(event) {
         case 'IDA':
             // allowdiagonal=typeof
             heuristic = document.querySelector('input[name="IDA-star-heuristic"]:checked').value;
-           // heuristic ="octile";
+            // heuristic ="chebyshev";
             allowDiagonal = document.getElementById("IDA-diag").checked;
-            bidirectional = document.getElementById("IDA-bi").checked;
+            showrecursion = document.getElementById("IDA-rec").checked;
+            weight = document.getElementById("weight-ida").value;
+            weight = parseFloat(weight);
             timelim = document.getElementById("time").value;
             timelim = parseFloat(timelim);
-            console.log(startPos, endPos, allowDiagonal, bidirectional, timelim,heuristic);
-            out = idastar(matrix, startPos, endPos,heuristic, allowDiagonal, bidirectional, timelim);
+            //  console.log(startPos, endPos, allowDiagonal, bidirectional, timelim,heuristic);
+            out = idastar(matrix, startPos, endPos, heuristic, allowDiagonal, showrecursion, timelim, weight);
             plotPathAndVertices(out);
             break;
         case "A-star":
@@ -28,6 +30,19 @@ function startsearch(event) {
             allowDiagonal = document.getElementById("bfs-diag").checked;
             bidirectional = document.getElementById("bfs-bi").checked;
             out = breadthFS(matrix, startPos, endPos, allowDiagonal, bidirectional);
+            plotPathAndVertices(out);
+            break;
+        case "BestFS":
+            heuristic = document.querySelector('input[name="BestFS-heuristic"]:checked').value;
+            allowDiagonal = document.getElementById("BestFS-diag").checked;
+            bidirectional = document.getElementById("BestFS-bi").checked;
+            out=BestFS(matrix,startPos,endPos,heuristic,allowDiagonal,bidirectional);
+            plotPathAndVertices(out);
+            break;
+        case "Dijkstra":
+            allowDiagonal = document.getElementById("dijkstra-diag").checked;
+            bidirectional = document.getElementById("dijkstra-bi").checked;
+            out=dijkstra(matrix,startPos,endPos,allowDiagonal,bidirectional);
             plotPathAndVertices(out);
             break;
         default:
