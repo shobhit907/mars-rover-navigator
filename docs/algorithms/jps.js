@@ -138,7 +138,7 @@ function neighbours(x, y, px, py, gridMatrix, dim1, dim2){
 
 
 
-var gridMatrix = [['#', '#', '#'],
-                  ['.', '.', '.'],
-                  ['#', '.', '#']]
-console.log(jump_point(2, 1, 1, 1, [1, 0], [2, 2], gridMatrix, 3, 3));
+// var gridMatrix = [['#', '#', '#'],
+//                   ['.', '.', '.'],
+//                   ['#', '.', '#']]
+// console.log(jump_point(2, 1, 1, 1, [1, 0], [2, 2], gridMatrix, 3, 3));

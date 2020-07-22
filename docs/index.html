@@ -18,7 +18,7 @@
 		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
 		crossorigin="anonymous"></script>
 	<link href="./css/style.css" type="text/css" rel="stylesheet">
-	
+
 </head>
 
 <body>
@@ -49,7 +49,7 @@
 						<input class="checkbox-tools" type="radio" id="wall1" name="blocktype" value="wall1">
 						<label class="for-checkbox-tools" for="wall1">Impassable Walls</label>
 						<input class="checkbox-tools" type="radio" id="wall2" name="blocktype" value="wall2">
-						<label class="for-checkbox-tools" for="wall2">Passable Walls</label>
+						<label class="for-checkbox-tools" for="wall2">Weighted Passable Walls</label>
 						<br>
 						<button class='btn' onclick="startSearch(event)">START SEARCH</button>
 						<button class='btn' onclick="stopSearch(event)" id="stop-search" disabled>STOP SEARCH</button>
@@ -386,7 +386,7 @@
 	<footer class="modal-footer">
 		<div class="container ontop" id="Stats">
 			<div class="row">
-				<p id="stats">Time Taken to Search : <span id="search-time">10</span> sec</p>
+				<p id="stats">Time Taken to Search : <span id="search-time">0</span> ms</p>
 			</div>
 		</div>
 		<div class="container ontop" id="gitHub-link">

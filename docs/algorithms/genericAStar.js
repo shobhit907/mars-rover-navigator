@@ -85,68 +85,72 @@ function genericAStar(gridMatrix, startPos, endPos, heuristic, weight, allowDiag
         let matchStart = [-1, -1], matchEnd = [-1, -1];
 
         let vertices_explored = new Array();
-        while (!startHeap.empty() && !endHeap.empty()) {
-            let nodeStart = startHeap.pop();
+        while (!startHeap.empty() || !endHeap.empty()) {
             let current_vertices_explored = new Array();
             let upto = (allowDiagonal ? 7 : 3);
-            for (let idx = 0; idx <= upto; idx++) {
-                let newPos = [nodeStart[0][0] + delta[idx][0], nodeStart[0][1] + delta[idx][1]];
-                // console.log(newPos);
-                if (newPos[0] >= 0 && newPos[0] < rows && newPos[1] >= 0 && newPos[1] < cols && gridMatrix[newPos[0]][newPos[1]] != '#') {
-                    if (cells_info[newPos[0]][newPos[1]][4] == fromEnd) {
-                        matchStart = nodeStart[0];
-                        matchEnd = newPos;
-                        break;
-                    }
-                    newg = nodeStart[1];
-                    if (gridMatrix[newPos[0]][newPos[1]] == '*') {
-                        newg += costPassableWall;
-                    } else {
-                        newg += 1;
-                    }
-                    if (newg < cells_info[newPos[0]][newPos[1]][0]) {
-                        current_vertices_explored.push(newPos);
-                        newh = weight * heuristic(newPos, endPos);
-                        newf = newg + newh;
-                        cells_info[newPos[0]][newPos[1]] = [newg, newh, newf, nodeStart[0], fromStart];
-                        startHeap.push([newPos, newg, newf]);
+            if (!startHeap.empty()) {
+                let nodeStart = startHeap.pop();
+                for (let idx = 0; idx <= upto; idx++) {
+                    let newPos = [nodeStart[0][0] + delta[idx][0], nodeStart[0][1] + delta[idx][1]];
+                    // console.log(newPos);
+                    if (newPos[0] >= 0 && newPos[0] < rows && newPos[1] >= 0 && newPos[1] < cols && gridMatrix[newPos[0]][newPos[1]] != '#') {
+                        if (cells_info[newPos[0]][newPos[1]][4] == fromEnd) {
+                            matchStart = nodeStart[0];
+                            matchEnd = newPos;
+                            break;
+                        }
+                        newg = nodeStart[1];
+                        if (gridMatrix[newPos[0]][newPos[1]] == '*') {
+                            newg += costPassableWall;
+                        } else {
+                            newg += 1;
+                        }
+                        if (newg < cells_info[newPos[0]][newPos[1]][0]) {
+                            current_vertices_explored.push(newPos);
+                            newh = weight * heuristic(newPos, endPos);
+                            newf = newg + newh;
+                            cells_info[newPos[0]][newPos[1]] = [newg, newh, newf, nodeStart[0], fromStart];
+                            startHeap.push([newPos, newg, newf]);
+                        }
                     }
                 }
-            }
-            vertices_explored.push(current_vertices_explored);
-            if (matchStart[0] != -1) {
-                break;
+                vertices_explored.push(current_vertices_explored);
+                if (matchStart[0] != -1) {
+                    break;
+                }
             }
 
-            let nodeEnd = endHeap.pop();
-            current_vertices_explored = new Array();
-            for (let idx = 0; idx <= upto; idx++) {
-                let newPos = [nodeEnd[0][0] + delta[idx][0], nodeEnd[0][1] + delta[idx][1]];
-                // console.log(newPos);
-                if (newPos[0] >= 0 && newPos[0] < rows && newPos[1] >= 0 && newPos[1] < cols && gridMatrix[newPos[0]][newPos[1]] != '#') {
-                    if (cells_info[newPos[0]][newPos[1]][4] == fromStart) {
-                        matchStart = newPos;
-                        matchEnd = nodeEnd[0];
-                        break;
-                    }
-                    newg = nodeEnd[1];
-                    if (gridMatrix[newPos[0]][newPos[1]] == '*') {
-                        newg += costPassableWall;
-                    } else {
-                        newg += 1;
-                    }
-                    if (newg < cells_info[newPos[0]][newPos[1]][0]) {
-                        current_vertices_explored.push(newPos);
-                        newh = weight * heuristic(newPos, startPos);
-                        newf = newg + newh;
-                        cells_info[newPos[0]][newPos[1]] = [newg, newh, newf, nodeEnd[0], fromEnd];
-                        endHeap.push([newPos, newg, newf]);
+            if (!endHeap.empty()) {
+                let nodeEnd = endHeap.pop();
+                current_vertices_explored = new Array();
+                for (let idx = 0; idx <= upto; idx++) {
+                    let newPos = [nodeEnd[0][0] + delta[idx][0], nodeEnd[0][1] + delta[idx][1]];
+                    // console.log(newPos);
+                    if (newPos[0] >= 0 && newPos[0] < rows && newPos[1] >= 0 && newPos[1] < cols && gridMatrix[newPos[0]][newPos[1]] != '#') {
+                        if (cells_info[newPos[0]][newPos[1]][4] == fromStart) {
+                            matchStart = newPos;
+                            matchEnd = nodeEnd[0];
+                            break;
+                        }
+                        newg = nodeEnd[1];
+                        if (gridMatrix[newPos[0]][newPos[1]] == '*') {
+                            newg += costPassableWall;
+                        } else {
+                            newg += 1;
+                        }
+                        if (newg < cells_info[newPos[0]][newPos[1]][0]) {
+                            current_vertices_explored.push(newPos);
+                            newh = weight * heuristic(newPos, startPos);
+                            newf = newg + newh;
+                            cells_info[newPos[0]][newPos[1]] = [newg, newh, newf, nodeEnd[0], fromEnd];
+                            endHeap.push([newPos, newg, newf]);
+                        }
                     }
                 }
-            }
-            vertices_explored.push(current_vertices_explored);
-            if (matchStart[0] != -1) {
-                break;
+                vertices_explored.push(current_vertices_explored);
+                if (matchStart[0] != -1) {
+                    break;
+                }
             }
         }
         if (cells_info[endPos[0]][endPos[1]][4] == 0) {
