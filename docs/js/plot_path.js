@@ -16,12 +16,26 @@ function plotCurrentVerticesExplored(vertices_explored) {
     } else {
         grid = document.getElementById("grid");
         ctx = grid.getContext("2d");
+        if(level>0){
+            for (let vert1 of vertices_explored[0][level-1]) {
+                // console.log(vert);
+                if (vert1[0] == endPos[0] && vert1[1] == endPos[1]) {
+                    continue;
+                }
+                ctx.clearRect(vert1[0] * sz, vert1[1] * sz, sz, sz);
+                ctx.strokeStyle="black";
+                ctx.strokeRect(vert1[0] * sz, vert1[1] * sz, sz, sz);
+                ctx.fillStyle = "#3B7";
+                ctx.fillRect(vert1[0] * sz, vert1[1] * sz, sz, sz);
+            }
+        }
         for (let vert of vertices_explored[0][level]) {
             // console.log(vert);
             if (vert[0] == endPos[0] && vert[1] == endPos[1]) {
                 continue;
             }
             ctx.clearRect(vert[0] * sz, vert[1] * sz, sz, sz);
+            ctx.strokeStyle="black";
             ctx.strokeRect(vert[0] * sz, vert[1] * sz, sz, sz);
             ctx.fillStyle = "#AFEEEE";
             ctx.fillRect(vert[0] * sz, vert[1] * sz, sz, sz);
