@@ -266,7 +266,7 @@ body,
     height: 200px;
     background-color: #ddd;
 }
-.ontop {
+#Stats {
 	height: 50px;
 	width: 160px;
     background-color: skyblue;
@@ -278,10 +278,32 @@ body,
 	border-radius: 5px;
 }
 
+#gitHub-link{
+	height: 30px;
+	width: 160px;
+    background-color: skyblue;
+    position: absolute;
+	top: 690px;
+	left: 30px;
+	opacity: 0.9;
+	color: black;
+	border-radius: 5px;
+}
+
 #stats{
 	margin-top: 3px;
 	color: black;
 	font-size: 13px;
 	font-weight: var(--black);
+	font-weight: bold;
+}
+
+#git{
+	margin-top: 3px;
+	margin-left: 8px;
+}
+
+a{
+	color: var(--black);
 	font-weight: bold;
 }
