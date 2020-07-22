@@ -1,7 +1,8 @@
-function startsearch(event) {
-    console.log(event);
+function startSearch(event) {
+    // console.log(event);
+    clearPath();
     let algo = document.querySelector('input[name="algo"]:checked').value;
-    console.log(algo);
+    // console.log(algo);
     switch (algo) {
         case 'IDA':
             // allowdiagonal=typeof

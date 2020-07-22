@@ -9,7 +9,7 @@ matrix[x][y]='*'    =>Passable Walls
 var startPos = [-1, -1], endPos = [-1, -1];
 var costPassableWall = 5;
 var sz = 8;
-var rows = 50, cols = 50;
+var rows = 80, cols = 80;
 var startColor = "#65DE17";
 var endColor = "#EE4523";
 var impassableWallColor = "black";

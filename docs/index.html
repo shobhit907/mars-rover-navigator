@@ -41,7 +41,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-9" id="grid-area">
-				<canvas draggable="true" id="grid" onclick="markStartEnd(event)"
+				<canvas draggable="true" id="grid" onclick="markStartEnd(event);markWall(event);"
 					ondrag="markWall(event)">
 
 				</canvas>
@@ -63,7 +63,8 @@
 						<input class="checkbox-tools" type="radio" id="wall2" name="blocktype" value="wall2">
 						<label class="for-checkbox-tools" for="wall2">Passable Walls</label>
 						<br>
-						<button class='btn' onclick="startsearch(event)">START SEARCH</button>
+						<button class='btn' onclick="startSearch(event)">START SEARCH</button>
+						<button class='btn' onclick="stopSearch(event)" id="stop-search" disabled>STOP SEARCH</button>
 						<button class='btn' onclick="resetGrid(event)">RESET ARENA</button>
 						<button class='btn' onclick="clearPath(event)">CLEAR PATH</button>
 					</div>
@@ -391,50 +392,26 @@
 						</div>
 					</div>
 				</div>
+			</div>
+		</div>
+	</div>
+	<footer class="modal-footer">
+		<div class="container ontop" id="Stats">
+			<div class="row">
+				<p id="stats">Time Taken to Search : <span id="search-time">10</span> sec</p>
+			</div>
+		</div>
+		<div class="container ontop" id="gitHub-link">
+			<div class="row">
+				<div class="col-xs-6">
+					<p id="git">
+						<a href="https://github.com/shobhit907/mars-rover-navigator" id="git">GitHub Repo</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</footer>
 
-				<!-- <div class="algorithms">
-					<div class='Heading'>
-						<h2 id="tools-head">ALGORITHMS</h2>
-					</div>
-					<input class="checkbox-tools-algo" type="radio" id="A-star" name="algo" value="A-star">
-					<label for="A-star">A*</label>
-					<input class="checkbox-tools-algo" type="radio" id="IDA" name="algo" value="IDA">
-					<label for="IDA">IDA*</label>
-					<input class="checkbox-tools-algo" type="radio" id="BreadthFS" name="algo" value="BreadthFS">
-					<label for="BreadthFS">Breadth-FS</label>
-					<br>
-					<input class="checkbox-tools-algo" type="radio" id="BestFS" name="algo" value="BestFS">
-					<label for="BestFS">Best-FS</label>
-					<input class="checkbox-tools-algo" type="radio" id="Dijkstra" name="algo" value="Dijkstra">
-					<label for="Dijkstra">Dijkstra</label>
-					<input class="checkbox-tools-algo" type="radio" id="JumpPoint" name="algo" value="JumpPoint">
-					<label for="JumpPoint">Jump Point</label>
-					<br>
-					<input class="checkbox-tools-algo" type="radio" id="Ortho" name="algo" value="Ortho">
-					<label for="Ortho">Orthogonal</label>
-					<input class="checkbox-tools-algo" type="radio" id="trace" name="algo" value="trace">
-					<label for="trace">Trace</label>
-				</div> -->
-			</div>
-		</div>
-	</div>
-	<div class="container ontop" id="Stats">
-		<div class="row">
-			<div class="col-xs-6">
-				<p id="stats">Time Taken in Search <br>00:00 min</p>
-			</div>
-		</div>
-	</div>
-	<div class="container ontop" id="gitHub-link">
-		<div class="row">
-			<div class="col-xs-6">
-				<p id="git">
-				<a href="https://github.com/shobhit907/mars-rover-navigator" id="git">GitHub Link</a>
-				</p>
-			</div>
-		</div>
-	</div>
-	
 
 
 </body>

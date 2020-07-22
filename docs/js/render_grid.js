@@ -8,7 +8,7 @@ jQuery(document).ready(function () {
 	// grid.height=grid.clientHeight;
 
 	ctx = grid.getContext("2d");	
-	ctx.scale(5,5);
+	ctx.scale(4,4);
 	ctx.lineWidth = 1;
 	ctx.strokeStyle = "black";
 	ctx.translate(0.5, 0.5);
@@ -37,7 +37,7 @@ function getXY(pixelx, pixely) {
 	grid = document.getElementById("grid");
 	grid_area = document.getElementById("grid-area");
 	// divide_by = sz * grid_area.offsetHeight / grid.height;
-	divide_by=sz*1500/grid.width*5;
+	divide_by=sz*1500/grid.width*4;
 	pixely+=scrollY;
 	pixelx+=scrollX;
 	X = pixelx / divide_by;
@@ -108,10 +108,10 @@ function markWall(event) {
 		ctx.fillRect(x * sz, y * sz, sz, sz);
 	} else if (checked == "wall2") {
 		matrix[x][y] = '*';
-		ctx.fillStyle="red";
-		ctx.fillText("A",x*sz,(y+1)*sz);
-		// ctx.fillStyle = passableWallColor;
-		// ctx.fillRect(x * sz, y * sz, sz, sz);
+		// ctx.fillStyle="red";
+		// ctx.fillText("10",x*sz,(y+1)*sz,sz-2);
+		ctx.fillStyle = passableWallColor;
+		ctx.fillRect(x * sz, y * sz, sz, sz);
 	}
 }
 
