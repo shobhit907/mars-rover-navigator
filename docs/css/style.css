@@ -40,13 +40,15 @@ body,
 	width: auto;
 }
 
-.checkbox-tools:checked + label,
-.checkbox-tools:not(:checked) + label{
+.col-sm .checkbox-tools:checked + label,
+.col-sm .checkbox-tools:not(:checked) + label{
 	position: relative;
 	display: inline-block;
 	padding: 4px;
 	padding-top: 5px;
 	width: 28%;
+	min-width: 70px;
+	max-width: 80px;
 	height: 10%;
 	font-size: 70%;
 	line-height: 150%;
@@ -70,11 +72,12 @@ body,
 }
 
 
-#tools-head{
+.col-sm #tools-head{
 	color: white;
 	text-align: center;
 	margin-top: 1rem;
 	width: 100%;
+	font-size: 1.8vw;
 }
 
 #start:checked + label{
@@ -150,10 +153,12 @@ body,
 }
 
 .btn{
-	/* margin-top: -2.9em; */
+	margin-top: 1em;
 	border: solid 1px var(--dark-light);
 	height: 10%;
 	width: 28%;
+	min-width: 70px;
+	max-width: 80px;
 	margin-left: 0.35rem;
 	margin-right: 0.35rem;
 	justify-content: center;
@@ -251,4 +256,8 @@ body,
 
 .card{
 	border: none;
+}
+
+.col-sm{
+	overflow: auto;
 }

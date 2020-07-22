@@ -50,21 +50,23 @@
 
 				<div class="design-tools">
 					<div class='Heading'>
-						<h2 id="tools-head">DESIGN TOOLS</h2>
+						<p id="tools-head">DESIGN TOOLS</h2>
 					</div>
-					<input class="checkbox-tools" type="radio" id="start" name="blocktype" value="start"
-						checked="checked">
-					<label for="start">Mark Starting</label>
-					<input class="checkbox-tools" type="radio" id="end" name="blocktype" value="end">
-					<label for="end">Mark Terminus</label>
-					<input class="checkbox-tools" type="radio" id="wall1" name="blocktype" value="wall1">
-					<label for="wall1">Impassable Walls</label>
-					<br>
-					<input class="checkbox-tools" type="radio" id="wall2" name="blocktype" value="wall2">
-					<label for="wall2">Passable Walls</label>
-					<button class='btn' onclick="startsearch(event)">START SEARCH</button>
-					<button class='btn' onclick="resetGrid(event)">RESET ARENA</button>
-					<button class='btn' onclick="clearPath(event)">CLEAR PATH</button>
+					<div class="col-12 pb-5">
+						<input class="checkbox-tools" type="radio" id="start" name="blocktype" value="start"
+							checked="checked">
+						<label class="for-checkbox-tools" for="start">Mark Starting</label>
+						<input class="checkbox-tools" type="radio" id="end" name="blocktype" value="end">
+						<label class="for-checkbox-tools" for="end">Mark Terminus</label>
+						<input class="checkbox-tools" type="radio" id="wall1" name="blocktype" value="wall1">
+						<label class="for-checkbox-tools" for="wall1">Impassable Walls</label>
+						<input class="checkbox-tools" type="radio" id="wall2" name="blocktype" value="wall2">
+						<label class="for-checkbox-tools" for="wall2">Passable Walls</label>
+						<br>
+						<button class='btn' onclick="startsearch(event)">START SEARCH</button>
+						<button class='btn' onclick="resetGrid(event)">RESET ARENA</button>
+						<button class='btn' onclick="clearPath(event)">CLEAR PATH</button>
+					</div>
 				</div>
 
 
@@ -72,7 +74,7 @@
 
 				<div class="algorithm_panel panel" id="algorithms">
 					<div class='Heading'>
-						<h2 id="tools-head">ALGORITHMS</h2>
+						<p id="tools-head">ALGORITHMS</h2>
 					</div>
 					<div class="accordion" id="accordion">
 						<div class="card">
