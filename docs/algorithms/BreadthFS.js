@@ -2,6 +2,20 @@
 // Start Position and End Position
 // Breadth First Search -> Partial Passable Walls are treated as Solid Impassable Walls
 
+function isNeighbor(point1, point2, allowDiagonal){
+    var possiblePositions = [[1, 0], [0, 1], [-1, 0], [0, -1], [1, 1], [-1, -1], [1, -1], [-1, 1]];
+    var neighbours = (allowDiagonal == false) ? 4 : 8;
+    for(var i =0; i<neighbours; i++){
+        var x = point1[0] + possiblePositions[i][0];
+        var y = point1[1] + possiblePositions[i][1];
+        if(x==point2[0] && y==point2[1]){
+            console.log("Start And End Positions Are Adjacent...Returning Trivial Path");
+            return true;
+        }
+    }
+    return false;
+}
+
 function breadthFS(gridMatrix, startPos, endPos, allowDiagonal = true, biDirectional = false) {
     startPos = startPos || [-1, -1];
     endPos = endPos || [-1, -1];
@@ -9,7 +23,14 @@ function breadthFS(gridMatrix, startPos, endPos, allowDiagonal = true, biDirecti
         return [];
     }
     let queue = [];
-    let rows = 50, cols = 50;
+    // Handling Corner Case
+    var checkNeighbor = isNeighbor(startPos, endPos, allowDiagonal);
+    if(checkNeighbor==true){
+        return [[], [startPos, endPos]];
+    }
+
+    // Commenting Local Variables rows and cols
+    // let rows = 50, cols = 50;
     let visited = new Array(rows);
     let path = new Array(rows);
     for (x = 0; x < rows; ++x) {
