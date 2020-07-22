@@ -9,7 +9,7 @@ jQuery(document).ready(function () {
 
 	ctx = grid.getContext("2d");	
 	ctx.scale(2.857,2.857);
-	ctx.lineWidth = 1;
+	ctx.lineWidth = 0.6;
 	ctx.strokeStyle = "black";
 	ctx.translate(0.5, 0.5);
 	console.log(rows,cols);
