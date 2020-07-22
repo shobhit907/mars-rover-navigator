@@ -9,7 +9,8 @@ jQuery(document).ready(function () {
 
 	ctx = grid.getContext("2d");	
 	ctx.scale(2.857,2.857);
-	ctx.lineWidth = 0.6;
+
+	ctx.lineWidth = 0.5;
 	ctx.strokeStyle = "black";
 	ctx.translate(0.5, 0.5);
 	console.log(rows,cols);
@@ -38,7 +39,8 @@ function getXY(pixelx, pixely) {
 	grid = document.getElementById("grid");
 	grid_area = document.getElementById("grid-area");
 	// divide_by = sz * grid_area.offsetHeight / grid.height;
-	divide_by=sz*1500/grid.width*4;
+	// divide_by=sz*1500/grid.width*4;
+	divide_by=sz*2100/grid.width*2.857;
 	pixely+=scrollY;
 	pixelx+=scrollX;
 	X = pixelx / divide_by;
@@ -51,11 +53,11 @@ function getXY(pixelx, pixely) {
 
 function markStartEnd(event) {
 	// console.log(event);
-	var checked = document.querySelector('input[name="blocktype"]:checked').value;
+	let checked = document.querySelector('input[name="blocktype"]:checked').value;
 	if (!(checked == "start" || checked == "end")) {
 		return;
 	}
-	var x = event.clientX, y = event.clientY;
+	let x = event.clientX, y = event.clientY;
 	coord = getXY(x, y);
 	x = coord[0];
 	y = coord[1];
@@ -91,7 +93,7 @@ function markWall(event) {
 	if (!(checked == "wall1" || checked == "wall2")) {
 		return;
 	}
-	var x = event.clientX, y = event.clientY;
+	let x = event.clientX, y = event.clientY;
 	coord = getXY(x, y);
 	x = coord[0];
 	y = coord[1];
@@ -103,6 +105,13 @@ function markWall(event) {
 	}
 	grid = document.getElementById("grid");
 	ctx = grid.getContext("2d");
+	if(matrix[x][y]=='*' || matrix[x][y]=='#'){
+		matrix[x][y]='.';
+		ctx.clearRect(x*sz,y*sz,sz,sz);
+		ctx.strokeStyle="black";
+		ctx.strokeRect(x*sz,y*sz,sz,sz);
+		return;
+	}
 	if (checked == "wall1") {
 		matrix[x][y] = '#';
 		ctx.fillStyle = impassableWallColor;
