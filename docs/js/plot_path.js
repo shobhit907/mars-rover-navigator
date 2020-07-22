@@ -2,15 +2,18 @@ let level = 0;
 let id;
 let whichfunction;
 let output;
+let stopOption=true;
 
 function plotPathAndVertices(out) {
     clearPath();
     output=out;
     level = 0;
     whichfunction=plotCurrentVerticesExplored;
+    document.getElementById("stop-search").innerHTML="STOP SEARCH";
     document.getElementById("stop-search").disabled=false;
+    clearInterval(id);
     id = setInterval(plotCurrentVerticesExplored, 30, output);
-
+    // console.log(id);
 }
 
 function plotCurrentVerticesExplored(output) {
@@ -40,7 +43,9 @@ function plotCurrentVerticesExplored(output) {
 function plotPath(output) {
     if (level == output[1].length - 1) {
         clearInterval(id);
+        whichfunction=null;
         document.getElementById("stop-search").disabled=true;
+        document.getElementById("stop-search").innerHTML="STOP SEARCH";
     } else {
         grid = document.getElementById("grid");
         ctx = grid.getContext("2d");
@@ -53,7 +58,6 @@ function plotPath(output) {
     }
 }
 
-let stopOption=true;
 
 function stopSearch(event){
     if(stopOption){

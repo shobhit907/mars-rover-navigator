@@ -1,6 +1,5 @@
 function startSearch(event) {
     // console.log(event);
-    clearPath();
     let algo = document.querySelector('input[name="algo"]:checked').value;
     // console.log(algo);
     switch (algo) {
