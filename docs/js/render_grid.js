@@ -12,6 +12,7 @@ jQuery(document).ready(function () {
 	ctx.lineWidth = 1;
 	ctx.strokeStyle = "black";
 	ctx.translate(0.5, 0.5);
+	console.log(rows,cols);
 	for (x = 0; x < rows; x++) {
 		for (y = 0; y < cols; y++) {
 			ctx.strokeRect(x * sz, y * sz, sz, sz);
