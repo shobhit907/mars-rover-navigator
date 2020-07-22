@@ -2,13 +2,13 @@ jQuery(document).ready(function () {
 	grid = document.getElementById("grid");
 	grid.width=2000;
 	grid.height=1000;
-	grid.style.width="1500px";
-	grid.style.height="750px";
+	grid.style.width="2100px";
+	grid.style.height="1050px";
 	// grid.width=grid.clientWidth;
 	// grid.height=grid.clientHeight;
 
 	ctx = grid.getContext("2d");	
-	ctx.scale(4,4);
+	ctx.scale(2.857,2.857);
 	ctx.lineWidth = 1;
 	ctx.strokeStyle = "black";
 	ctx.translate(0.5, 0.5);
