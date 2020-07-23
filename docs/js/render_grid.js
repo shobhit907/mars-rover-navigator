@@ -139,6 +139,7 @@ function resetGrid(event) {
 }
 
 function clearPath(event){
+	document.getElementById("search-time").innerHTML=0;
 	grid = document.getElementById("grid");
 	ctx = grid.getContext("2d");
 	ctx.strokeStyle = "black";

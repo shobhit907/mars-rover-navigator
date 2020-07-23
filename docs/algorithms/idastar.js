@@ -38,7 +38,6 @@ function getheuristic(matrix, endPos, heuristic,weight) {
     }
 
 
-
     var heur = new Array(rows);
     vis = new Array(rows);
     for (x = 0; x < matrix.length; ++x) {

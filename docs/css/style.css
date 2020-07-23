@@ -277,7 +277,7 @@ body,
 	width: 160px;
     background-color: skyblue;
     position: fixed;
-	top: 630px;
+	bottom: 50px;
 	left: 30px;
 	opacity: 0.9;
 	color: black;
@@ -289,7 +289,7 @@ body,
 	width: 160px;
     background-color: skyblue;
     position: fixed;
-	top: 690px;
+	bottom: 15px;
 	left: 30px;
 	opacity: 0.9;
 	color: black;
@@ -356,6 +356,8 @@ a{
 	animation: appear 350ms ease-in 1;
 	max-width: 500px;
 	position: relative;
+	background-color: burlywood;
+	border-radius: 20px;
   }
 
   #guide{
