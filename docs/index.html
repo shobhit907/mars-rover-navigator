@@ -30,8 +30,8 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-9" id="grid-area">
-				<canvas draggable="true" id="grid" onclick="markStartEnd(event);markWall(event);"
-					ondrag="markWall(event)">
+				<canvas draggable="true" id="grid" onclick="markStartEnd(event);"
+					ondrag="markWall(event)" onmousedown="toggleWall(event);">
 				</canvas>
 			</div>
 			<div class="col-sm" id="options">
@@ -393,7 +393,7 @@
 			<div class="row">
 				<div class="col-xs-6">
 					<p id="git">
-						<a href="https://github.com/shobhit907/mars-rover-navigator" id="git">GitHub Repo</a>
+						<a href="https://github.com/shobhit907/mars-rover-navigator">GitHub Repo</a>
 					</p>
 				</div>
 			</div>
