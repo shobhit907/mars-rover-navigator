@@ -2,6 +2,10 @@
 	box-sizing: border-box;
 }
 
+body {
+    font-family: 'Courgette';
+}
+
 html,
 body,
 .container-fluid,
@@ -40,6 +44,10 @@ body,
 	height: 0;
 	visibility: hidden;
 	width: auto;
+}
+
+.for-checkbox-tools,.btn{
+	font-weight: bold;
 }
 
 .col-sm .checkbox-tools:checked + label,
