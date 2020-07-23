@@ -10,6 +10,7 @@ body,
 	margin: 0px;
 	padding: 0px;
 		/* background-color: #dde66e; */
+	user-select: none;
 }
 
 #grid-area {
@@ -312,3 +313,57 @@ a{
 	color: var(--black);
 	font-weight: bold;
 }
+
+
+#toggle{
+	visibility: hidden;
+	opacity: 0;
+	position: relative;
+	z-index: -1;
+  }
+  
+  #toggle:checked ~ dialog {
+	display: block;
+  }
+  
+  #guide-1{
+	background: var(--dark-light);
+	color: var(--yellow);
+	font-weight: bold;
+	padding: .5em 1em;
+	border-radius: 4px;
+	border-color: var(--black);
+	user-select: none;
+  }
+
+ #toggle:checked + #guide-1{
+	  background-color: var(--yellow);
+	  color: var(--dark-light);
+  }
+
+  #guide-1:hover{
+	cursor: pointer;
+  }
+
+  @keyframes appear {
+	0%{
+	  opacity: 0;
+	  transform: translateY(-10px);
+	}
+  }
+  
+  dialog{
+	animation: appear 350ms ease-in 1;
+	max-width: 500px;
+	position: relative;
+  }
+
+  #guide{
+	  position: fixed;
+	  top: 10px;
+	  left: 2px;
+  }
+
+  #guide-dialog{
+	  font-size: 13px;
+  }
