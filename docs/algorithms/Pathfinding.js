@@ -18,8 +18,8 @@ function startSearch(event) {
             startTime=(new Date()).getTime();
             out = idastar(matrix, startPos, endPos, heuristic, allowDiagonal, showrecursion, timelim, weight);
             endTime=(new Date()).getTime();
-            time_taken.innerHTML=endTime-startTime;
             plotPathAndVertices(out);
+            time_taken.innerHTML=endTime-startTime;
             break;
         case "A-star":
             heuristic = document.querySelector('input[name="A-star-heuristic"]:checked').value;
@@ -30,8 +30,8 @@ function startSearch(event) {
             startTime=(new Date()).getTime();
             out = AStar(matrix, startPos, endPos, heuristic, weight, allowDiagonal, bidirectional);
             endTime=(new Date()).getTime();
-            time_taken.innerHTML=endTime-startTime;
             plotPathAndVertices(out);
+            time_taken.innerHTML=endTime-startTime;
             break;
         case "BreadthFS":
             allowDiagonal = document.getElementById("bfs-diag").checked;
@@ -39,8 +39,8 @@ function startSearch(event) {
             startTime=(new Date()).getTime();
             out = breadthFS(matrix, startPos, endPos, allowDiagonal, bidirectional);
             endTime=(new Date()).getTime();
-            time_taken.innerHTML=endTime-startTime;
             plotPathAndVertices(out);
+            time_taken.innerHTML=endTime-startTime;
             break;
         case "BestFS":
             heuristic = document.querySelector('input[name="BestFS-heuristic"]:checked').value;
@@ -49,8 +49,8 @@ function startSearch(event) {
             startTime=(new Date()).getTime();
             out=BestFS(matrix,startPos,endPos,heuristic,allowDiagonal,bidirectional);
             endTime=(new Date()).getTime();
-            time_taken.innerHTML=endTime-startTime;
             plotPathAndVertices(out);
+            time_taken.innerHTML=endTime-startTime;
             break;
         case "Dijkstra":
             allowDiagonal = document.getElementById("dijkstra-diag").checked;
@@ -58,8 +58,8 @@ function startSearch(event) {
             startTime=(new Date()).getTime();
             out=dijkstra(matrix,startPos,endPos,allowDiagonal,bidirectional);
             endTime=(new Date()).getTime();
-            time_taken.innerHTML=endTime-startTime;
             plotPathAndVertices(out);
+            time_taken.innerHTML=endTime-startTime;
             break;
         default:
             console.log("Select one algo");
