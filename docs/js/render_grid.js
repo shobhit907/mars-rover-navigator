@@ -105,13 +105,13 @@ function markWall(event) {
 	}
 	grid = document.getElementById("grid");
 	ctx = grid.getContext("2d");
-	// if(matrix[x][y]=='*' || matrix[x][y]=='#'){
-	// 	matrix[x][y]='.';
-	// 	ctx.clearRect(x*sz,y*sz,sz,sz);
-	// 	ctx.strokeStyle="black";
-	// 	ctx.strokeRect(x*sz,y*sz,sz,sz);
-	// 	return;
-	// }
+	if(event.type=="mousedown" && (matrix[x][y]=='*' || matrix[x][y]=='#')){
+		matrix[x][y]='.';
+		ctx.clearRect(x*sz,y*sz,sz,sz);
+		ctx.strokeStyle="black";
+		ctx.strokeRect(x*sz,y*sz,sz,sz);
+		return;
+	}
 	if (checked == "wall1") {
 		matrix[x][y] = '#';
 		ctx.fillStyle = impassableWallColor;
@@ -163,39 +163,39 @@ function clearPath(event){
 	}
 }
 
-function toggleWall(event){
-	var checked = document.querySelector('input[name="blocktype"]:checked').value;
-	if (!(checked == "wall1" || checked == "wall2")) {
-		return;
-	}
-	let x = event.clientX, y = event.clientY;
-	coord = getXY(x, y);
-	x = coord[0];
-	y = coord[1];
-	if (x === 0 && y === 0) {
-		return;
-	}
-	if (matrix[x][y] == 'S' || matrix[x][y] == 'E') {
-		return;
-	}
-	grid = document.getElementById("grid");
-	ctx = grid.getContext("2d");
-	if(matrix[x][y]=='*' || matrix[x][y]=='#'){
-		matrix[x][y]='.';
-		ctx.clearRect(x*sz,y*sz,sz,sz);
-		ctx.strokeStyle="black";
-		ctx.strokeRect(x*sz,y*sz,sz,sz);
-		return;
-	}
-	if (checked == "wall1") {
-		matrix[x][y] = '#';
-		ctx.fillStyle = impassableWallColor;
-		ctx.fillRect(x * sz, y * sz, sz, sz);
-	} else if (checked == "wall2") {
-		matrix[x][y] = '*';
-		// ctx.fillStyle="red";
-		// ctx.fillText("10",x*sz,(y+1)*sz,sz-2);
-		ctx.fillStyle = passableWallColor;
-		ctx.fillRect(x * sz, y * sz, sz, sz);
-	}
-}
+// function toggleWall(event){
+// 	var checked = document.querySelector('input[name="blocktype"]:checked').value;
+// 	if (!(checked == "wall1" || checked == "wall2")) {
+// 		return;
+// 	}
+// 	let x = event.clientX, y = event.clientY;
+// 	coord = getXY(x, y);
+// 	x = coord[0];
+// 	y = coord[1];
+// 	if (x === 0 && y === 0) {
+// 		return;
+// 	}
+// 	if (matrix[x][y] == 'S' || matrix[x][y] == 'E') {
+// 		return;
+// 	}
+// 	grid = document.getElementById("grid");
+// 	ctx = grid.getContext("2d");
+// 	if(matrix[x][y]=='*' || matrix[x][y]=='#'){
+// 		matrix[x][y]='.';
+// 		ctx.clearRect(x*sz,y*sz,sz,sz);
+// 		ctx.strokeStyle="black";
+// 		ctx.strokeRect(x*sz,y*sz,sz,sz);
+// 		return;
+// 	}
+// 	if (checked == "wall1") {
+// 		matrix[x][y] = '#';
+// 		ctx.fillStyle = impassableWallColor;
+// 		ctx.fillRect(x * sz, y * sz, sz, sz);
+// 	} else if (checked == "wall2") {
+// 		matrix[x][y] = '*';
+// 		// ctx.fillStyle="red";
+// 		// ctx.fillText("10",x*sz,(y+1)*sz,sz-2);
+// 		ctx.fillStyle = passableWallColor;
+// 		ctx.fillRect(x * sz, y * sz, sz, sz);
+// 	}
+// }
