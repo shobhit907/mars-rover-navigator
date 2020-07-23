@@ -255,6 +255,10 @@ body,
 	height: 2.5rem;
 }
 
+.card-body{
+	background-color: burlywood;
+}
+
 .card{
 	border: none;
 }

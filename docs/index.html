@@ -52,7 +52,7 @@
 						<label class="for-checkbox-tools" for="wall2">Weighted Passable Walls</label>
 						<br>
 						<button class='btn' onclick="startSearch(event)">START SEARCH</button>
-						<button class='btn' onclick="stopSearch(event)" id="stop-search" disabled>STOP SEARCH</button>
+						<button class='btn' onclick="stopSearch(event)" id="stop-search" disabled=true>STOP SEARCH</button>
 						<button class='btn' onclick="resetGrid(event)">RESET ARENA</button>
 						<button class='btn' onclick="clearPath(event)">CLEAR PATH</button>
 					</div>
@@ -111,7 +111,7 @@
 									<label for="weight">Weight : </label>
 									<input type="number" class="form-control-sm" id="weight" value="1">
 									<div class="checkbox">
-										<label><input type="checkbox" name="A-diag" id="A-diag" value=""> Allow
+										<label><input type="checkbox" name="A-diag" id="A-diag" value="" checked> Allow
 											Diagonal</label>
 									</div>
 									<div class="checkbox">
