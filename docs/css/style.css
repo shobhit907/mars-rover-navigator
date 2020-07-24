@@ -88,6 +88,8 @@ body,
 	margin-top: 1rem;
 	width: 100%;
 	font-size: 1.8vw;
+	font-family: 'URW Chancery L', cursive;
+	/* font-family: 'Hammersmith One'; */
 }
 
 #start:checked + label{
