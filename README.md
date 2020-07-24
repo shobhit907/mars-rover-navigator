@@ -26,10 +26,19 @@ As this algorithm may visit the same node via different paths, it may be possibl
 </p>
 
 ### Breadth First Search
+
+Breadth First search--mono directional and bidirectional respectively-
+</br>
 <img src="docs/images/bfs-bi-nodiag.png" alt="alt text" width="48%" >    <img src="docs/images/bfs-bi.png" alt="alt text" width="48%" > 
 
 ### Best First Search
+
+Best First Search-- using Chebyshev Heuristics, allowing diaognals mono directional and bidirectional, and not allowing diagonal neighbours, respectively-
+</br>
 <img src="docs/images/best-first.png" alt="alt text" width="30%" >    <img src="docs/images/best-first-bi.png" alt="alt text" width="31.5%" > <img src="docs/images/best-first-nodiag.png" alt="alt text" width="30%" >
 
 ### Djikstra Search
+
+Djikstra search--allowing diagonals and not allowing diagonals respectively-
+</br>
 <img src="docs/images/djikstra-bi.png" alt="alt text" width="48%" >    <img src="docs/images/djikstra-nodiag.png" alt="alt text" width="48%" > 
