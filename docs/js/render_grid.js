@@ -140,6 +140,9 @@ function resetGrid(event) {
 
 function clearPath(event){
 	document.getElementById("search-time").innerHTML=0;
+	document.getElementById('path-length').innerHTML=0;
+	document.getElementById("stop-search").disabled=true;
+	document.getElementById("stop-search").innerHTML="STOP SEARCH";
 	grid = document.getElementById("grid");
 	ctx = grid.getContext("2d");
 	ctx.strokeStyle = "black";
