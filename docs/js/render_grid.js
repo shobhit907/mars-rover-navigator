@@ -143,6 +143,8 @@ function resetGrid(event) {
 function clearPath(event){
 	document.getElementById("search-time").innerHTML=0;
 	document.getElementById('path-length').innerHTML=0;
+	document.getElementById("stop-search").innerHTML="STOP SEARCH";
+	document.getElementById("stop-search").disabled=true;
 	grid = document.getElementById("grid");
 	ctx = grid.getContext("2d");
 	ctx.strokeStyle = "black";
@@ -163,6 +165,26 @@ function clearPath(event){
 				ctx.fillStyle=passableWallColor;
 			}
 			ctx.fillRect(x*sz,y*sz,sz,sz);
+		}
+	}
+}
+
+function drawMaze(event){
+	for(x=0;x<rows;x++){
+		for(y=0;y<cols;y++){
+			matrix[x][y]='.';
+		}
+	}
+	generate_maze(matrix,0,0,Math.floor(rows/2),Math.floor(cols/2));
+	grid = document.getElementById("grid");
+	ctx = grid.getContext("2d");
+	ctx.strokeStyle = "black";
+	ctx.fillStyle="black";
+	for(x=0;x<rows;x++){
+		for(y=0;y<cols;y++){
+			if(matrix[x][y]=='#'){
+				ctx.fillRect(x*sz,y*sz,sz,sz);
+			}
 		}
 	}
 }
