@@ -126,6 +126,8 @@ function markWall(event) {
 }
 
 function resetGrid(event) {
+	document.getElementById("search-time").innerHTML=0;
+	document.getElementById('path-length').innerHTML=0;
 	grid = document.getElementById("grid");
 	ctx = grid.getContext("2d");
 	ctx.strokeStyle = "black";
