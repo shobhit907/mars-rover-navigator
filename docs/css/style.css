@@ -47,7 +47,7 @@ body,
 }
 
 .for-checkbox-tools,.btn{
-	font-weight: bold;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .col-sm .checkbox-tools:checked + label,
@@ -337,11 +337,11 @@ a{
   #guide-1{
 	background: var(--dark-light);
 	color: var(--yellow);
-	font-weight: bold;
 	padding: .5em 1em;
 	border-radius: 4px;
 	border-color: var(--black);
 	user-select: none;
+	font-family: serif;
   }
 
  #toggle:checked + #guide-1{
@@ -361,11 +361,13 @@ a{
   }
   
   dialog{
-	animation: appear 350ms ease-in 1;
+	animation: appear 150ms ease-in 1;
 	max-width: 500px;
 	position: relative;
 	background-color: burlywood;
 	border-radius: 20px;
+	opacity: 0.95;
+	padding-top: 0px;
   }
 
   #guide{
@@ -375,5 +377,5 @@ a{
   }
 
   #guide-dialog{
-	  font-size: 13px;
+	  font-size: 15px;
   }
