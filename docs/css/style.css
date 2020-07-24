@@ -283,9 +283,9 @@ body,
     background-color: #ddd;
 }
 #Stats {
-	height: 70px;
-	width: 160px;
-    background-color: skyblue;
+	height: 45px;
+	width: 200px;
+    background-color: white;
     position: fixed;
 	bottom: 70px;
 	left: 30px;
@@ -297,7 +297,7 @@ body,
 #gitHub-link{
 	height: 30px;
 	width: 160px;
-    background-color: skyblue;
+    background-color: white;
     position: fixed;
 	bottom: 30px;
 	left: 30px;
