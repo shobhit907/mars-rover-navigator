@@ -281,11 +281,11 @@ body,
     background-color: #ddd;
 }
 #Stats {
-	height: 50px;
+	height: 70px;
 	width: 160px;
     background-color: skyblue;
     position: fixed;
-	bottom: 50px;
+	bottom: 70px;
 	left: 30px;
 	opacity: 0.9;
 	color: black;
@@ -297,7 +297,7 @@ body,
 	width: 160px;
     background-color: skyblue;
     position: fixed;
-	bottom: 15px;
+	bottom: 30px;
 	left: 30px;
 	opacity: 0.9;
 	color: black;
@@ -314,7 +314,7 @@ body,
 
 #git{
 	margin-top: 3px;
-	margin-left: 8px;
+	margin-left: 20px;
 }
 
 a{

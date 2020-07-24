@@ -3,6 +3,7 @@ function startSearch(event) {
     let algo = document.querySelector('input[name="algo"]:checked').value;
     // console.log(algo);
     let time_taken=document.getElementById("search-time");
+    let path_length = document.getElementById("path-length");
     switch (algo) {
         case 'IDA':
             // allowdiagonal=typeof
@@ -20,6 +21,7 @@ function startSearch(event) {
             endTime=(new Date()).getTime();
             plotPathAndVertices(out);
             time_taken.innerHTML=endTime-startTime;
+            path_length.innerHTML=out[1].length;
             break;
         case "A-star":
             heuristic = document.querySelector('input[name="A-star-heuristic"]:checked').value;
@@ -31,6 +33,7 @@ function startSearch(event) {
             out = AStar(matrix, startPos, endPos, heuristic, weight, allowDiagonal, bidirectional);
             endTime=(new Date()).getTime();
             plotPathAndVertices(out);
+            path_length.innerHTML=out[1].length;
             time_taken.innerHTML=endTime-startTime;
             break;
         case "BreadthFS":
@@ -40,6 +43,7 @@ function startSearch(event) {
             out = breadthFS(matrix, startPos, endPos, allowDiagonal, bidirectional);
             endTime=(new Date()).getTime();
             plotPathAndVertices(out);
+            path_length.innerHTML=out[1].length;
             time_taken.innerHTML=endTime-startTime;
             break;
         case "BestFS":
@@ -50,6 +54,7 @@ function startSearch(event) {
             out=BestFS(matrix,startPos,endPos,heuristic,allowDiagonal,bidirectional);
             endTime=(new Date()).getTime();
             plotPathAndVertices(out);
+            path_length.innerHTML=out[1].length;
             time_taken.innerHTML=endTime-startTime;
             break;
         case "Dijkstra":
@@ -59,6 +64,7 @@ function startSearch(event) {
             out=dijkstra(matrix,startPos,endPos,allowDiagonal,bidirectional);
             endTime=(new Date()).getTime();
             plotPathAndVertices(out);
+            path_length.innerHTML=out[1].length;
             time_taken.innerHTML=endTime-startTime;
             break;
         default:
