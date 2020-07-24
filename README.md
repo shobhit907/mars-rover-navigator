@@ -7,7 +7,10 @@ The <b>total time</b> taken for the search is also displayed at the end of every
 The different algorithms supported -
 ### A* Search
 
+A* search-- using Chebyshev Heuristics, allowing diaognals mono directional and bidirectional, and not allowing diagonal neighbours, respectively-
+</br>
 <img src="docs/images/a-cheb.png" alt="alt text" width="30%" >    <img src="docs/images/a-cheb-bi.png" alt="alt text" width="31.5%" > <img src="docs/images/a-cheb-nodiag.png" alt="alt text" width="30%" >
+
 
 ### IDA* Search
 <p>
